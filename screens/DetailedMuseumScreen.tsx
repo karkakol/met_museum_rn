@@ -82,6 +82,8 @@ const fieldsToDisplay = [
   'artistDisplayName',
   'artistBeginDate',
   'creditLine',
+  'artistDisplayBio',
+  'repository',
 ];
 
 const screenWidth = Dimensions.get('window').width;
