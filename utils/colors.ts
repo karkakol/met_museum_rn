@@ -18,6 +18,7 @@ interface AppColors {
   surfaceColor: string;
   highlightColor: string;
   textColor: string;
+  textInverseColor: string;
   headerColor: string;
 }
 
@@ -31,6 +32,7 @@ const LightColors: AppColors = {
   surfaceColor: Colors.lightSurface,
   highlightColor: Colors.lightHighlight,
   textColor: Colors.lightText,
+  textInverseColor: Colors.darkText,
   headerColor: Colors.lightHeader,
 };
 
@@ -39,5 +41,6 @@ const DarkColors: AppColors = {
   surfaceColor: Colors.darkSurface,
   highlightColor: Colors.darkHighlight,
   textColor: Colors.darkText,
+  textInverseColor: Colors.lightText,
   headerColor: Colors.darkHeader,
 };
