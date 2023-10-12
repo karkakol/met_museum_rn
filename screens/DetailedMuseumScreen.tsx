@@ -15,10 +15,9 @@ import {startCase} from 'lodash';
 import {MOCK_IMAGE} from '../utils/constans';
 import type {MainRootStackParamList} from '../App';
 import {getAppStyles} from '../utils/styles';
+import {getAppColors} from '../utils/colors';
 
 import ScrollView = Animated.ScrollView;
-
-import {getAppColors} from '../utils/colors';
 
 type Props = NativeStackScreenProps<MainRootStackParamList, 'DetailedMuseum'>;
 
@@ -48,7 +47,7 @@ export default function DetailedMuseumScreen({route}: Props) {
         titleStyle={{
           color: item === selectedField ? textInverseColor : textColor,
         }}
-        style={[styles.chip]}
+        style={styles.chip}
       />
     );
   };
@@ -103,11 +102,12 @@ const styles = StyleSheet.create({
     height: 60,
   },
   chipList: {
-    paddingVertical: 8,
+    paddingVertical: 12,
     flexDirection: 'row',
   },
   chip: {
     padding: 4,
+    marginHorizontal: 4,
   },
   title: {
     fontSize: 32,

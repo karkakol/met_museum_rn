@@ -1,4 +1,10 @@
-import {TextInput, View, StyleSheet, useColorScheme} from 'react-native';
+import {
+  TextInput,
+  View,
+  StyleSheet,
+  useColorScheme,
+  Platform,
+} from 'react-native';
 import {useState} from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -18,7 +24,11 @@ export default function SearchMuseumScreen() {
           value={search}
           style={[styles.inputLayout, textStyle]}
         />
-        <Icon name="search" size={24} style={textStyle} />
+        <Icon
+          name="search"
+          size={Platform.OS === 'ios' ? 24 : 32}
+          style={textStyle}
+        />
       </View>
 
       <MuseumList search={search} />
@@ -33,6 +43,7 @@ const styles = StyleSheet.create({
   searchBar: {
     display: 'flex',
     flexDirection: 'row',
+    alignItems: 'center',
     fontSize: 24,
     paddingVertical: 4,
     paddingLeft: 12,
