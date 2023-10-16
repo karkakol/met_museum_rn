@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import {useColorScheme} from 'react-native';
 
 import {getAppColors} from '../utils/colors';
-import {getAppStyles} from '../utils/styles';
+import {getAppColorStyles} from '../utils/styles/colors';
 
 import SettingsScreen from './settings/SettingsScreen';
 import FavouriteMuseumsScreen from './FavouriteMuseumsScreen';
@@ -15,7 +15,7 @@ const Tab = createBottomTabNavigator();
 
 export default function HomeScreen() {
   const colorScheme = useColorScheme();
-  const {backgroundStyle} = getAppStyles(colorScheme);
+  const {backgroundStyle} = getAppColorStyles(colorScheme);
   const {headerColor} = getAppColors(colorScheme);
 
   return (

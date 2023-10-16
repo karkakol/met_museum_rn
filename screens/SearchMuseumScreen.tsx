@@ -9,16 +9,18 @@ import {useState} from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import MuseumList from '../components/MuseumList';
-import {getAppStyles} from '../utils/styles';
+import {getAppColorStyles} from '../utils/styles/colors';
+import {Layouts} from '../utils/styles/layouts';
 export default function SearchMuseumScreen() {
   const colorScheme = useColorScheme();
-  const {textStyle, backgroundStyle, surfaceStyle} = getAppStyles(colorScheme);
+  const {textStyle, backgroundStyle, surfaceStyle} =
+    getAppColorStyles(colorScheme);
 
   const [search, setSearch] = useState('');
 
   return (
     <View style={[styles.containerLayout, backgroundStyle]}>
-      <View style={[styles.searchBar, surfaceStyle]}>
+      <View style={[Layouts.textInputWrapper, surfaceStyle]}>
         <TextInput
           onChangeText={setSearch}
           value={search}
@@ -39,18 +41,6 @@ export default function SearchMuseumScreen() {
 const styles = StyleSheet.create({
   containerLayout: {
     paddingVertical: 4,
-  },
-  searchBar: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    fontSize: 24,
-    paddingVertical: 4,
-    paddingLeft: 12,
-    paddingRight: 8,
-    borderRadius: 8,
-    marginHorizontal: 12,
-    marginVertical: 4,
   },
   inputLayout: {
     flex: 1,

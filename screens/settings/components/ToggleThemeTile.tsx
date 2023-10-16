@@ -10,7 +10,7 @@ import {useCallback} from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import {getAppColors} from '../../../utils/colors';
-import {getAppStyles} from '../../../utils/styles';
+import {getAppColorStyles} from '../../../utils/styles/colors';
 
 import setColorScheme = Appearance.setColorScheme;
 
@@ -22,7 +22,7 @@ export function ToggleThemeTile() {
     else setColorScheme('light');
   }, [colorScheme]);
 
-  const {surfaceStyle, textStyle} = getAppStyles(colorScheme);
+  const {surfaceStyle, textStyle} = getAppColorStyles(colorScheme);
   const {textColor, highlightColor} = getAppColors(colorScheme);
 
   const label =

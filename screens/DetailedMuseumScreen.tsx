@@ -14,7 +14,7 @@ import {startCase} from 'lodash';
 
 import {MOCK_IMAGE} from '../utils/constans';
 import type {MainRootStackParamList} from '../App';
-import {getAppStyles} from '../utils/styles';
+import {getAppColorStyles} from '../utils/styles/colors';
 import {getAppColors} from '../utils/colors';
 
 import ScrollView = Animated.ScrollView;
@@ -54,7 +54,7 @@ export default function DetailedMuseumScreen({route}: Props) {
       ? MOCK_IMAGE
       : museum.primaryImageSmall;
 
-  const {backgroundStyle, textStyle} = getAppStyles(colorScheme);
+  const {backgroundStyle, textStyle} = getAppColorStyles(colorScheme);
   const {textColor, textInverseColor} = getAppColors(colorScheme);
 
   const renderChip = (item: DisplayField) => {

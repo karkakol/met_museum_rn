@@ -8,7 +8,7 @@ import {
 import React, {useContext} from 'react';
 
 import {FavouritesContext} from '../providers/FavouritesProvider';
-import {getAppStyles} from '../utils/styles';
+import {getAppColorStyles} from '../utils/styles/colors';
 
 import MuseumTile from './MuseumTile';
 
@@ -28,7 +28,7 @@ export default function FavouriteList() {
     );
   };
 
-  const {backgroundStyle} = getAppStyles(colorScheme);
+  const {backgroundStyle} = getAppColorStyles(colorScheme);
 
   return (
     <View style={[styles.containerLayout, backgroundStyle]}>

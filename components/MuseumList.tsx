@@ -10,7 +10,7 @@ import {useContext} from 'react';
 import {useDebounce} from '../hooks/useDebounce';
 import useAllIds from '../api/useAllIds';
 import {FavouritesContext} from '../providers/FavouritesProvider';
-import {getAppStyles} from '../utils/styles';
+import {getAppColorStyles} from '../utils/styles/colors';
 
 import MuseumTile from './MuseumTile';
 
@@ -35,7 +35,7 @@ export default function MuseumList(props: MuseumListProps) {
     );
   };
 
-  const {backgroundStyle} = getAppStyles(colorScheme);
+  const {backgroundStyle} = getAppColorStyles(colorScheme);
 
   return (
     <View style={[styles.containerLayout, backgroundStyle]}>

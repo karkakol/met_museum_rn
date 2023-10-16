@@ -3,7 +3,7 @@ import type {ColorSchemeName} from 'react-native';
 export const Colors = {
   lightBackground: 'white',
   lightSurface: '#DDDDDD',
-  lightHighlight: '#222222BB',
+  lightHighlight: '#BBBBBB',
   lightText: '#222222',
   lightHeader: '#000000',
   darkBackground: 'black',

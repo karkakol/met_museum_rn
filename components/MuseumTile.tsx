@@ -14,7 +14,7 @@ import type {MainStackNavigation} from '../App';
 import {MOCK_IMAGE} from '../utils/constans';
 import {getAppColors} from '../utils/colors';
 import useGetMuseum from '../api/useGetMuseum';
-import {getAppStyles} from '../utils/styles';
+import {getAppColorStyles} from '../utils/styles/colors';
 
 interface MuseumTileProps {
   id: number;
@@ -34,7 +34,7 @@ export default function MuseumTile(props: MuseumTileProps) {
     }
   };
 
-  const {textStyle, surfaceStyle} = getAppStyles(colorScheme);
+  const {textStyle, surfaceStyle} = getAppColorStyles(colorScheme);
   const {highlightColor} = getAppColors(colorScheme);
 
   const url =

@@ -1,12 +1,12 @@
 import {useColorScheme, View, StyleSheet} from 'react-native';
 
-import {getAppStyles} from '../../utils/styles';
+import {getAppColorStyles} from '../../utils/styles/colors';
 
 import {ToggleThemeTile} from './components/ToggleThemeTile';
 
 export default function SettingsScreen() {
   const colorScheme = useColorScheme();
-  const {backgroundStyle} = getAppStyles(colorScheme);
+  const {backgroundStyle} = getAppColorStyles(colorScheme);
 
   return (
     <View style={[styles.containerLayout, backgroundStyle]}>
