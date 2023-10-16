@@ -120,6 +120,8 @@ dependencies {
     }
 }
 
+apply plugin: 'com.google.gms.google-services' // <- Add this line
+
 project.ext.vectoricons = [
     iconFontNames: [
             'FontAwesome.ttf',
