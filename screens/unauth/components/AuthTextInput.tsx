@@ -45,7 +45,7 @@ export const AuthTextInput = ({
         <TouchableHighlight
           underlayColor={highlightColor}
           hitSlop={{top: 12, bottom: 12, left: 12, right: 12}}
-          style={[styles.touchable]}
+          style={[styles.iconTouchable]}
           onPress={() => setShowText(prevState => !prevState)}>
           <Icon
             name={showText ? 'eye' : 'eye-slash'}
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     height: 40,
   },
-  touchable: {
+  iconTouchable: {
     borderRadius: 16,
     padding: 4,
   },
