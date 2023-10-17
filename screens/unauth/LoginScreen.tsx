@@ -1,4 +1,11 @@
-import {View, StyleSheet, useColorScheme, Text, Image} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  useColorScheme,
+  Text,
+  Image,
+  ScrollView,
+} from 'react-native';
 import {useCallback, useState} from 'react';
 import auth from '@react-native-firebase/auth';
 
@@ -31,26 +38,32 @@ export default function LoginScreen() {
 
   return (
     <View style={[backgroundStyle, styles.wrapper]}>
-      <KeyboardDismissable>
-        <View>
-          <Image
-            source={require('../../assets/museum_login_image.webp')}
-            style={styles.image}
-          />
-          <AuthTextInput text={email} setText={setEmail} placeholder="Email" />
-          <AuthTextInput
-            text={password}
-            setText={setPassword}
-            placeholder="Password"
-            obscure
-          />
-          {errorMessage.length > 0 ? (
-            <Text style={styles.errorStyle}>{errorMessage}</Text>
-          ) : null}
-        </View>
+      <ScrollView>
+        <KeyboardDismissable>
+          <View>
+            <Image
+              source={require('../../assets/museum_login_image.webp')}
+              style={styles.image}
+            />
+            <AuthTextInput
+              text={email}
+              setText={setEmail}
+              placeholder="Email"
+            />
+            <AuthTextInput
+              text={password}
+              setText={setPassword}
+              placeholder="Password"
+              obscure
+            />
+            {errorMessage.length > 0 ? (
+              <Text style={styles.errorStyle}>{errorMessage}</Text>
+            ) : null}
+          </View>
+        </KeyboardDismissable>
+      </ScrollView>
 
-        <AuthButton onPress={signIn} />
-      </KeyboardDismissable>
+      <AuthButton onPress={signIn} text="Login" />
     </View>
   );
 }
@@ -68,6 +81,7 @@ const styles = StyleSheet.create({
   },
   errorStyle: {
     margin: 12,
+
     fontSize: 14,
     color: 'red',
     alignSelf: 'flex-end',

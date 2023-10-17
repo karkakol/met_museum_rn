@@ -11,15 +11,17 @@ import Animated, {
   useAnimatedKeyboard,
   useAnimatedStyle,
 } from 'react-native-reanimated';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 import {getAppColorStyles} from '../../../utils/styles/colors';
 import {getAppColors} from '../../../utils/colors';
 
 interface AuthButtonProps {
+  text: string;
   onPress: () => void;
 }
 
-export const AuthButton = ({onPress}: AuthButtonProps) => {
+export const AuthButton = ({onPress, text}: AuthButtonProps) => {
   const colorScheme = useColorScheme();
   const {textInverseStyle, backgroundInverseStyle, backgroundStyle} =
     getAppColorStyles(colorScheme);
@@ -28,19 +30,22 @@ export const AuthButton = ({onPress}: AuthButtonProps) => {
   const keyboard = useAnimatedKeyboard();
   const buttonStyle = useAnimatedStyle(() => {
     return {
-      marginBottom: keyboard.height.value + 36,
+      position: 'absolute',
+      bottom: keyboard.height.value + 10 + 300 / (20 + keyboard.height.value),
     };
   });
 
   return (
     <Animated.View style={buttonStyle}>
-      <TouchableHighlight
-        underlayColor={textColor}
-        hitSlop={{top: 12, bottom: 12, left: 12, right: 12}}
-        style={[styles.button, backgroundInverseStyle]}
-        onPress={onPress}>
-        <Text style={[textInverseStyle, styles.buttonText]}>Log In</Text>
-      </TouchableHighlight>
+      <View style={[backgroundStyle]}>
+        <TouchableHighlight
+          underlayColor={textColor}
+          hitSlop={{top: 12, bottom: 12, left: 12, right: 12}}
+          style={[styles.button, backgroundInverseStyle]}
+          onPress={onPress}>
+          <Text style={[textInverseStyle, styles.buttonText]}>{text}</Text>
+        </TouchableHighlight>
+      </View>
     </Animated.View>
   );
 };

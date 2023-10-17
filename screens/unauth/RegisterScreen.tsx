@@ -1,5 +1,12 @@
 import React, {useCallback, useState} from 'react';
-import {View, StyleSheet, useColorScheme, Image, Text} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  useColorScheme,
+  Image,
+  Text,
+  ScrollView,
+} from 'react-native';
 import auth from '@react-native-firebase/auth';
 
 import {getAppColorStyles} from '../../utils/styles/colors';
@@ -37,32 +44,37 @@ export const RegisterScreen = () => {
 
   return (
     <View style={[backgroundStyle, styles.wrapper]}>
-      <KeyboardDismissable>
-        <View>
-          <Image
-            source={require('../../assets/museum_login_image.webp')}
-            style={styles.image}
-          />
-          <AuthTextInput text={email} setText={setEmail} placeholder="Email" />
-          <AuthTextInput
-            text={password}
-            setText={setPassword}
-            placeholder="Password"
-            obscure
-          />
-          <AuthTextInput
-            text={repeatedPassword}
-            setText={setRepeatedPassword}
-            placeholder="Repeated password"
-            obscure
-          />
-          {errorMessage.length > 0 ? (
-            <Text style={styles.errorStyle}>{errorMessage}</Text>
-          ) : null}
-        </View>
-
-        <AuthButton onPress={register} />
-      </KeyboardDismissable>
+      <ScrollView>
+        <KeyboardDismissable>
+          <View>
+            <Image
+              source={require('../../assets/museum_login_image.webp')}
+              style={styles.image}
+            />
+            <AuthTextInput
+              text={email}
+              setText={setEmail}
+              placeholder="Email"
+            />
+            <AuthTextInput
+              text={password}
+              setText={setPassword}
+              placeholder="Password"
+              obscure
+            />
+            <AuthTextInput
+              text={repeatedPassword}
+              setText={setRepeatedPassword}
+              placeholder="Repeated password"
+              obscure
+            />
+            {errorMessage.length > 0 ? (
+              <Text style={styles.errorStyle}>{errorMessage}</Text>
+            ) : null}
+          </View>
+        </KeyboardDismissable>
+      </ScrollView>
+      <AuthButton onPress={register} text="Register" />
     </View>
   );
 };
