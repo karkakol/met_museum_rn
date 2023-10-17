@@ -31,7 +31,7 @@ export const AuthButton = ({onPress, text}: AuthButtonProps) => {
   const buttonStyle = useAnimatedStyle(() => {
     return {
       position: 'absolute',
-      bottom: keyboard.height.value + 10 + 300 / (20 + keyboard.height.value),
+      bottom: keyboard.height.value + 800 / (28 + keyboard.height.value),
     };
   });
 
