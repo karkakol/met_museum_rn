@@ -1,9 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text} from 'react-native';
 import auth, {type FirebaseAuthTypes} from '@react-native-firebase/auth';
+import {NavigationContainer} from '@react-navigation/native';
 
 import UnAuthNavigator from './navigators/UnAuthNavigator';
 import AuthNavigator from './navigators/AuthNavigator';
+import {AuthProviders} from './providers/AuthProviders';
 
 type NullableUser = FirebaseAuthTypes.User | null;
 
@@ -31,8 +33,18 @@ export default function App() {
     );
 
   if (!user) {
-    return <UnAuthNavigator />;
+    return (
+      <NavigationContainer>
+        <UnAuthNavigator />
+      </NavigationContainer>
+    );
   }
 
-  return <AuthNavigator />;
+  return (
+    <AuthProviders>
+      <NavigationContainer>
+        <AuthNavigator />
+      </NavigationContainer>
+    </AuthProviders>
+  );
 }

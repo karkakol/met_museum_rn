@@ -1,6 +1,12 @@
 export const FirebaseErrorMap: Record<string, string> = {
-  'auth/invalid-email': 'The email address is badly formatted',
+  //login errors
+  'auth/invalid-email': 'Email address is badly formatted',
   'auth/user-disabled': 'User account is disabled',
-  'auth/user-not-found': 'There is no user corespondig to email',
-  'auth/wrong-password': 'Wring password',
+  'auth/user-not-found': 'There is no user corresponding to email',
+  'auth/wrong-password': 'Wrong password',
+  //register errors
+  'auth/email-already-in-use': 'Email is already in use',
+  'auth/invalid-email	': 'TEmail address is badly formatted',
+  'auth/operation-not-allowed	': 'Operation not allowed',
+  'auth/weak-password	': 'Password must have at least 6 characters',
 };

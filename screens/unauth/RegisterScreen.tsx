@@ -1,5 +1,5 @@
-import {View, StyleSheet, useColorScheme, Text, Image} from 'react-native';
-import {useCallback, useState} from 'react';
+import React, {useCallback, useState} from 'react';
+import {View, StyleSheet, useColorScheme, Image, Text} from 'react-native';
 import auth from '@react-native-firebase/auth';
 
 import {getAppColorStyles} from '../../utils/styles/colors';
@@ -8,18 +8,24 @@ import {KeyboardDismissable} from '../../components/KeyboardDismissable';
 
 import {AuthTextInput} from './components/AuthTextInput';
 import {AuthButton} from './components/AuthButton';
-export default function LoginScreen() {
+
+export const RegisterScreen = () => {
   const colorScheme = useColorScheme();
   const {backgroundStyle} = getAppColorStyles(colorScheme);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [repeatedPassword, setRepeatedPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState<string>('');
 
-  const signIn = useCallback(async () => {
+  const register = useCallback(async () => {
     setErrorMessage('');
+    if (repeatedPassword !== password) {
+      setErrorMessage('Passwords must be identical');
+      return;
+    }
     try {
-      await auth().signInWithEmailAndPassword(email, password);
+      await auth().createUserWithEmailAndPassword(email, password);
     } catch (e) {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
@@ -27,7 +33,7 @@ export default function LoginScreen() {
 
       setErrorMessage(FirebaseErrorMap[code] ?? 'Unknown error');
     }
-  }, [email, password]);
+  }, [email, password, repeatedPassword]);
 
   return (
     <View style={[backgroundStyle, styles.wrapper]}>
@@ -44,16 +50,22 @@ export default function LoginScreen() {
             placeholder="Password"
             obscure
           />
+          <AuthTextInput
+            text={repeatedPassword}
+            setText={setRepeatedPassword}
+            placeholder="Repeated password"
+            obscure
+          />
           {errorMessage.length > 0 ? (
             <Text style={styles.errorStyle}>{errorMessage}</Text>
           ) : null}
         </View>
 
-        <AuthButton onPress={signIn} />
+        <AuthButton onPress={register} />
       </KeyboardDismissable>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   wrapper: {

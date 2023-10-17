@@ -13,9 +13,9 @@ import {useState} from 'react';
 import {startCase} from 'lodash';
 
 import {MOCK_IMAGE} from '../../utils/constans';
-import type {MainRootStackParamList} from '../../App';
 import {getAppColorStyles} from '../../utils/styles/colors';
 import {getAppColors} from '../../utils/colors';
+import type {AuthRootStackParamList} from '../../navigators/AuthNavigator';
 
 import ScrollView = Animated.ScrollView;
 
@@ -40,7 +40,7 @@ const fieldsToDisplay: DisplayField[] = [
   'repository',
 ];
 
-type Props = NativeStackScreenProps<MainRootStackParamList, 'DetailedMuseum'>;
+type Props = NativeStackScreenProps<AuthRootStackParamList, 'DetailedMuseum'>;
 
 export default function DetailedMuseumScreen({route}: Props) {
   const colorScheme = useColorScheme();

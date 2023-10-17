@@ -10,11 +10,11 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {useNavigation} from '@react-navigation/native';
 
-import type {MainStackNavigation} from '../App';
 import {MOCK_IMAGE} from '../utils/constans';
 import {getAppColors} from '../utils/colors';
 import useGetMuseum from '../api/useGetMuseum';
 import {getAppColorStyles} from '../utils/styles/colors';
+import type {AuthStackNavigation} from '../navigators/AuthNavigator';
 
 interface MuseumTileProps {
   id: number;
@@ -26,7 +26,7 @@ export default function MuseumTile(props: MuseumTileProps) {
   const colorScheme = useColorScheme();
 
   const museumAction = useGetMuseum(props.id);
-  const navigation = useNavigation<MainStackNavigation>();
+  const navigation = useNavigation<AuthStackNavigation>();
 
   const onTileTap = () => {
     if (!museumAction.inProgress) {
