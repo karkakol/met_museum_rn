@@ -12,10 +12,10 @@ import {Chip} from '@rneui/themed';
 import {useState} from 'react';
 import {startCase} from 'lodash';
 
-import {MOCK_IMAGE} from '../utils/constans';
-import type {MainRootStackParamList} from '../App';
-import {getAppColorStyles} from '../utils/styles/colors';
-import {getAppColors} from '../utils/colors';
+import {MOCK_IMAGE} from '../../utils/constans';
+import type {MainRootStackParamList} from '../../App';
+import {getAppColorStyles} from '../../utils/styles/colors';
+import {getAppColors} from '../../utils/colors';
 
 import ScrollView = Animated.ScrollView;
 

@@ -8,9 +8,9 @@ import {
 import {useState} from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import MuseumList from '../components/MuseumList';
-import {getAppColorStyles} from '../utils/styles/colors';
-import {Layouts} from '../utils/styles/layouts';
+import MuseumList from '../../../../components/MuseumList';
+import {getAppColorStyles} from '../../../../utils/styles/colors';
+import {Layouts} from '../../../../utils/styles/layouts';
 export default function SearchMuseumScreen() {
   const colorScheme = useColorScheme();
   const {textStyle, backgroundStyle, surfaceStyle} =
@@ -20,7 +20,8 @@ export default function SearchMuseumScreen() {
 
   return (
     <View style={[styles.containerLayout, backgroundStyle]}>
-      <View style={[Layouts.textInputWrapper, surfaceStyle]}>
+      <View
+        style={[Layouts.textInputWrapper, surfaceStyle, styles.inputWrapper]}>
         <TextInput
           onChangeText={setSearch}
           value={search}
@@ -45,5 +46,8 @@ const styles = StyleSheet.create({
   inputLayout: {
     flex: 1,
     fontSize: 24,
+  },
+  inputWrapper: {
+    paddingVertical: 8,
   },
 });

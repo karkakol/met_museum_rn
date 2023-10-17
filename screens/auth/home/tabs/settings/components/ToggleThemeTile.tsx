@@ -9,8 +9,8 @@ import {
 import {useCallback} from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import {getAppColors} from '../../../utils/colors';
-import {getAppColorStyles} from '../../../utils/styles/colors';
+import {getAppColors} from '../../../../../../utils/colors';
+import {getAppColorStyles} from '../../../../../../utils/styles/colors';
 
 import setColorScheme = Appearance.setColorScheme;
 

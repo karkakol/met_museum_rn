@@ -1,66 +1,38 @@
-import {
-  NavigationContainer,
-  type NavigationProp,
-} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {useColorScheme} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {View, Text} from 'react-native';
+import auth, {type FirebaseAuthTypes} from '@react-native-firebase/auth';
 
-import {FavouritesProvider} from './providers/FavouritesProvider';
-import HomeScreen from './screens/HomeScreen';
-import DetailedMuseumScreen from './screens/DetailedMuseumScreen';
-import type Museum from './model/Museum';
-import {getAppColors} from './utils/colors';
-import {getAppColorStyles} from './utils/styles/colors';
-import LoginScreen from './screens/LoginScreen';
-import TestScreen from './screens/TestScreen';
+import UnAuthNavigator from './navigators/UnAuthNavigator';
+import AuthNavigator from './navigators/AuthNavigator';
 
-export type MainRootStackParamList = {
-  Login: undefined;
-  Home: undefined;
-  DetailedMuseum: {museum: Museum};
-  Test: undefined;
-};
-
-export type MainStackNavigation = NavigationProp<MainRootStackParamList>;
-
-const Stack = createNativeStackNavigator<MainRootStackParamList>();
+type NullableUser = FirebaseAuthTypes.User | null;
 
 export default function App() {
-  return (
-    <FavouritesProvider>
-      <MainNavigator />
-    </FavouritesProvider>
-  );
-}
+  // Set an initializing state whilst Firebase connects
+  const [initializing, setInitializing] = useState(true);
+  const [user, setUser] = useState<NullableUser>();
 
-function MainNavigator() {
-  const colorScheme = useColorScheme();
-  const {backgroundStyle} = getAppColorStyles(colorScheme);
-  const {backgroundColor, headerColor} = getAppColors(colorScheme);
+  // Handle user state changes
+  function onAuthStateChanged(user: NullableUser) {
+    setUser(user);
+    if (initializing) setInitializing(false);
+  }
 
-  return (
-    <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="Login"
-        screenOptions={() => ({
-          tabBarStyle: backgroundStyle,
-          headerStyle: {backgroundColor: backgroundColor},
-          headerTintColor: headerColor,
-          headerBackTitleVisible: false,
-        })}>
-        <Stack.Screen name="Login" component={LoginScreen} />
-        <Stack.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="DetailedMuseum"
-          component={DetailedMuseumScreen}
-          options={({route}) => ({title: route.params.museum.title})}
-        />
-        <Stack.Screen name="Test" component={TestScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
+  useEffect(() => {
+    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+    return subscriber; // unsubscribe on unmount
+  }, []);
+
+  if (initializing)
+    return (
+      <View>
+        <Text>Loading ...</Text>
+      </View>
+    );
+
+  if (!user) {
+    return <UnAuthNavigator />;
+  }
+
+  return <AuthNavigator />;
 }
