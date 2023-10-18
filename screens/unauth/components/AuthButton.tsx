@@ -26,12 +26,15 @@ export const AuthButton = ({onPress, text}: AuthButtonProps) => {
   const {textInverseStyle, backgroundInverseStyle, backgroundStyle} =
     getAppColorStyles(colorScheme);
   const {textColor} = getAppColors(colorScheme);
+  const safeArea = useSafeAreaInsets();
 
   const keyboard = useAnimatedKeyboard();
   const buttonStyle = useAnimatedStyle(() => {
     return {
       position: 'absolute',
-      bottom: keyboard.height.value + 800 / (28 + keyboard.height.value),
+      bottom:
+        keyboard.height.value +
+        (safeArea.bottom * 28) / (28 + keyboard.height.value),
     };
   });
 
