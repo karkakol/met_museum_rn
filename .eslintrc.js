@@ -15,7 +15,7 @@ module.exports = {
     // Prevents errors due to .eslintrc.js not being included in the TS project.
     // See also: https://typescript-eslint.io/linting/troubleshooting/#i-get-errors-telling-me-eslint-was-configured-to-run--however-that-tsconfig-does-not--none-of-those-tsconfigs-include-this-file
     {
-      files: ['.eslintrc.js'],
+      files: ['.eslintrc.js', '.metro.config.js'],
       parserOptions: {project: null},
       rules: {
         '@typescript-eslint/no-unnecessary-condition': 'off',
@@ -67,6 +67,7 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
+    '@typescript-eslint/no-var-requires': 'off',
   },
   settings: {
     'import/resolver': {

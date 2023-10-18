@@ -8,9 +8,8 @@ import {
 } from 'react-native';
 import auth from '@react-native-firebase/auth';
 import Icon from 'react-native-vector-icons/FontAwesome';
-
-import {getAppColorStyles} from '../../../../../../utils/styles/colors';
-import {getAppColors} from '../../../../../../utils/colors';
+import {getAppColors} from '@colors';
+import {getAppColorStyles} from '@styles/colors';
 
 export const LogoutTile = () => {
   const logout = useCallback(() => {

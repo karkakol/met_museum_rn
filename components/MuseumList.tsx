@@ -6,11 +6,11 @@ import {
   View,
 } from 'react-native';
 import {useContext} from 'react';
+import {getAppColorStyles} from '@styles/colors';
 
 import {useDebounce} from '../hooks/useDebounce';
 import useAllIds from '../api/useAllIds';
 import {FavouritesContext} from '../providers/FavouritesProvider';
-import {getAppColorStyles} from '../utils/styles/colors';
 
 import MuseumTile from './MuseumTile';
 

@@ -2,7 +2,7 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {useColorScheme} from 'react-native';
-import {getAppColors} from '@colors/*';
+import {getAppColors} from '@colors';
 import {getAppColorStyles} from '@styles/colors';
 
 import SettingsScreen from './tabs/settings/SettingsScreen';

@@ -3,18 +3,10 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@colors/*": [
-        "utils/colors.ts"
-      ],
-      "@styles/*": [
-        "utils/styles/*"
-      ],
-      "@components/*": [
-        "components/*"
-      ],
-      "@constans/*": [
-        "utils/constans.ts"
-      ]
+      "@components/*": ["./components/*"],
+      "@colors": ["./utils/colors.ts"],
+      "@constans": ["./utils/constans.ts"],
+      "@styles/*": ["./utils/styles/*"],
     }
   }
 }

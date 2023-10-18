@@ -12,8 +12,8 @@ import {Chip} from '@rneui/themed';
 import {useState} from 'react';
 import {startCase} from 'lodash';
 import {getAppColorStyles} from '@styles/colors';
-import {getAppColors} from '@colors/*';
-import {MOCK_IMAGE} from '@constans/*';
+import {getAppColors} from '@colors';
+import {MOCK_IMAGE} from '@constans';
 
 import type {AuthRootStackParamList} from '../../navigators/AuthNavigator';
 
@@ -60,6 +60,7 @@ export default function DetailedMuseumScreen({route}: Props) {
   const renderChip = (item: DisplayField) => {
     return (
       <Chip
+        key={item}
         title={startCase(item)}
         type={selectedField === item ? 'solid' : 'outline'}
         onPress={() => setSelectedField(item)}

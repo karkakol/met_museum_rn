@@ -6,9 +6,9 @@ import {
   StyleSheet,
 } from 'react-native';
 import React, {useContext} from 'react';
+import {getAppColorStyles} from '@styles/colors';
 
 import {FavouritesContext} from '../providers/FavouritesProvider';
-import {getAppColorStyles} from '../utils/styles/colors';
 
 import MuseumTile from './MuseumTile';
 

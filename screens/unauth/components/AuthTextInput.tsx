@@ -7,10 +7,9 @@ import {
   useColorScheme,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-
-import {Layouts} from '../../../utils/styles/layouts';
-import {getAppColorStyles} from '../../../utils/styles/colors';
-import {getAppColors} from '../../../utils/colors';
+import {getAppColors} from '@colors';
+import {Layouts} from '@styles/layouts';
+import {getAppColorStyles} from '@styles/colors';
 
 interface AppTextInputProps {
   text: string;

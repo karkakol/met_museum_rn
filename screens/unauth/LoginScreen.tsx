@@ -10,7 +10,7 @@ import {
 import {useCallback, useState} from 'react';
 import auth from '@react-native-firebase/auth';
 import {getAppColorStyles} from '@styles/colors';
-import {GOLDEN_RATIO} from '@constans/*';
+import {GOLDEN_RATIO} from '@constans';
 
 import {FirebaseErrorMap} from '../../utils/firebase/ErrorTranslation';
 

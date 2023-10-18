@@ -12,9 +12,8 @@ import Animated, {
   useAnimatedStyle,
 } from 'react-native-reanimated';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-
-import {getAppColorStyles} from '../../../utils/styles/colors';
-import {getAppColors} from '../../../utils/colors';
+import {getAppColors} from '@colors';
+import {getAppColorStyles} from '@styles/colors';
 
 interface AuthButtonProps {
   text: string;

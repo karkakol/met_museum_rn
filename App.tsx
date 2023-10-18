@@ -32,19 +32,15 @@ export default function App() {
       </View>
     );
 
-  if (!user) {
-    return (
-      <NavigationContainer>
-        <UnAuthNavigator />
-      </NavigationContainer>
-    );
-  }
-
   return (
-    <AuthProviders>
-      <NavigationContainer>
-        <AuthNavigator />
-      </NavigationContainer>
-    </AuthProviders>
+    <NavigationContainer>
+      {!user ? (
+        <UnAuthNavigator />
+      ) : (
+        <AuthProviders>
+          <AuthNavigator />
+        </AuthProviders>
+      )}
+    </NavigationContainer>
   );
 }

@@ -7,9 +7,9 @@ import {
 } from 'react-native';
 import {useState} from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {getAppColorStyles} from '@styles/colors';
-import {Layouts} from '@styles/layouts';
 import MuseumList from '@components/MuseumList';
+import {Layouts} from '@styles/layouts';
+import {getAppColorStyles} from '@styles/colors';
 export default function SearchMuseumScreen() {
   const colorScheme = useColorScheme();
   const {textStyle, backgroundStyle, surfaceStyle} =

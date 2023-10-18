@@ -5,13 +5,12 @@ import {
   type TextStyle,
   type ViewStyle,
 } from 'react-native';
-import {Colors} from '@colors/Colors';
 
 export function getAppColorStyles(schemeName: ColorSchemeName): ColorMode {
   if (schemeName === 'dark') return DarkMode;
   return LightMode;
 }
-
+import {Colors} from '../colors';
 interface ColorMode {
   backgroundStyle: ViewStyle | TextStyle | ImageStyle;
   backgroundInverseStyle: ViewStyle | TextStyle | ImageStyle;
