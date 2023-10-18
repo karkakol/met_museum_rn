@@ -1,6 +1,5 @@
 import {useColorScheme, View, StyleSheet} from 'react-native';
-
-import {getAppColorStyles} from '../../../../../utils/styles/colors';
+import {getAppColorStyles} from '@styles/colors';
 
 import {ToggleThemeTile} from './components/ToggleThemeTile';
 import {LogoutTile} from './components/LogoutTile';

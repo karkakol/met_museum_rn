@@ -1,3 +1,20 @@
 {
-  "extends": "@tsconfig/react-native/tsconfig.json"
+  "extends": "@tsconfig/react-native/tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@colors/*": [
+        "utils/colors.ts"
+      ],
+      "@styles/*": [
+        "utils/styles/*"
+      ],
+      "@components/*": [
+        "components/*"
+      ],
+      "@constans/*": [
+        "utils/constans.ts"
+      ]
+    }
+  }
 }

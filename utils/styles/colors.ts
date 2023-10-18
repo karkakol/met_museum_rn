@@ -5,8 +5,7 @@ import {
   type TextStyle,
   type ViewStyle,
 } from 'react-native';
-
-import {Colors} from '../colors';
+import {Colors} from '@colors/Colors';
 
 export function getAppColorStyles(schemeName: ColorSchemeName): ColorMode {
   if (schemeName === 'dark') return DarkMode;

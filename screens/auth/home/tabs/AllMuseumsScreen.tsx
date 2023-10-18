@@ -1,4 +1,5 @@
-import MuseumList from '../../../../components/MuseumList';
+import MuseumList from '@components/MuseumList';
+
 export default function AllMuseumsScreen() {
   return <MuseumList search={''} />;
 }

@@ -9,11 +9,10 @@ import {
 } from 'react-native';
 import {useCallback, useState} from 'react';
 import auth from '@react-native-firebase/auth';
+import {getAppColorStyles} from '@styles/colors';
+import {GOLDEN_RATIO} from '@constans/*';
 
-import {getAppColorStyles} from '../../utils/styles/colors';
 import {FirebaseErrorMap} from '../../utils/firebase/ErrorTranslation';
-import {KeyboardDismissable} from '../../components/KeyboardDismissable';
-import {GOLDEN_RATIO} from '../../utils/constans';
 
 import {AuthTextInput} from './components/AuthTextInput';
 import {AuthButton} from './components/AuthButton';
@@ -40,29 +39,23 @@ export default function LoginScreen() {
 
   return (
     <View style={[backgroundStyle, styles.wrapper]}>
-      <ScrollView>
-        <KeyboardDismissable>
-          <View>
-            <Image
-              source={require('../../assets/login_image.webp')}
-              style={styles.image}
-            />
-            <AuthTextInput
-              text={email}
-              setText={setEmail}
-              placeholder="Email"
-            />
-            <AuthTextInput
-              text={password}
-              setText={setPassword}
-              placeholder="Password"
-              obscure
-            />
-            {errorMessage.length > 0 ? (
-              <Text style={styles.errorStyle}>{errorMessage}</Text>
-            ) : null}
-          </View>
-        </KeyboardDismissable>
+      <ScrollView keyboardShouldPersistTaps="handled">
+        <View>
+          <Image
+            source={require('../../assets/login_image.webp')}
+            style={styles.image}
+          />
+          <AuthTextInput text={email} setText={setEmail} placeholder="Email" />
+          <AuthTextInput
+            text={password}
+            setText={setPassword}
+            placeholder="Password"
+            obscure
+          />
+          {errorMessage.length > 0 ? (
+            <Text style={styles.errorStyle}>{errorMessage}</Text>
+          ) : null}
+        </View>
       </ScrollView>
 
       <AuthButton onPress={signIn} text="Login" />
@@ -87,7 +80,6 @@ const styles = StyleSheet.create({
   },
   errorStyle: {
     margin: 12,
-
     fontSize: 14,
     color: 'red',
     alignSelf: 'flex-end',

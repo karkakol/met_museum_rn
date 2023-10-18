@@ -9,11 +9,10 @@ import {
   Dimensions,
 } from 'react-native';
 import auth from '@react-native-firebase/auth';
+import {getAppColorStyles} from '@styles/colors';
+import {GOLDEN_RATIO} from '@constans/*';
 
-import {getAppColorStyles} from '../../utils/styles/colors';
 import {FirebaseErrorMap} from '../../utils/firebase/ErrorTranslation';
-import {KeyboardDismissable} from '../../components/KeyboardDismissable';
-import {GOLDEN_RATIO} from '../../utils/constans';
 
 import {AuthTextInput} from './components/AuthTextInput';
 import {AuthButton} from './components/AuthButton';
@@ -46,36 +45,30 @@ export const RegisterScreen = () => {
 
   return (
     <View style={[backgroundStyle, styles.wrapper]}>
-      <ScrollView>
-        <KeyboardDismissable>
-          <View>
-            <Image
-              source={require('../../assets/register_image.jpeg')}
-              style={styles.image}
-              resizeMode="cover"
-            />
-            <AuthTextInput
-              text={email}
-              setText={setEmail}
-              placeholder="Email"
-            />
-            <AuthTextInput
-              text={password}
-              setText={setPassword}
-              placeholder="Password"
-              obscure
-            />
-            <AuthTextInput
-              text={repeatedPassword}
-              setText={setRepeatedPassword}
-              placeholder="Repeated password"
-              obscure
-            />
-            {errorMessage.length > 0 ? (
-              <Text style={styles.errorStyle}>{errorMessage}</Text>
-            ) : null}
-          </View>
-        </KeyboardDismissable>
+      <ScrollView keyboardShouldPersistTaps="handled">
+        <View>
+          <Image
+            source={require('../../assets/register_image.jpeg')}
+            style={styles.image}
+            resizeMode="cover"
+          />
+          <AuthTextInput text={email} setText={setEmail} placeholder="Email" />
+          <AuthTextInput
+            text={password}
+            setText={setPassword}
+            placeholder="Password"
+            obscure
+          />
+          <AuthTextInput
+            text={repeatedPassword}
+            setText={setRepeatedPassword}
+            placeholder="Repeated password"
+            obscure
+          />
+          {errorMessage.length > 0 ? (
+            <Text style={styles.errorStyle}>{errorMessage}</Text>
+          ) : null}
+        </View>
       </ScrollView>
       <AuthButton onPress={register} text="Register" />
     </View>
