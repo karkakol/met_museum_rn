@@ -6,12 +6,14 @@ import {
   Image,
   Text,
   ScrollView,
+  Dimensions,
 } from 'react-native';
 import auth from '@react-native-firebase/auth';
 
 import {getAppColorStyles} from '../../utils/styles/colors';
 import {FirebaseErrorMap} from '../../utils/firebase/ErrorTranslation';
 import {KeyboardDismissable} from '../../components/KeyboardDismissable';
+import {GOLDEN_RATIO} from '../../utils/constans';
 
 import {AuthTextInput} from './components/AuthTextInput';
 import {AuthButton} from './components/AuthButton';
@@ -48,8 +50,9 @@ export const RegisterScreen = () => {
         <KeyboardDismissable>
           <View>
             <Image
-              source={require('../../assets/museum_login_image.webp')}
+              source={require('../../assets/register_image.jpeg')}
               style={styles.image}
+              resizeMode="cover"
             />
             <AuthTextInput
               text={email}
@@ -79,6 +82,8 @@ export const RegisterScreen = () => {
   );
 };
 
+const screenWidth = Dimensions.get('window').width;
+
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
@@ -89,6 +94,8 @@ const styles = StyleSheet.create({
   image: {
     borderRadius: 20,
     margin: 20,
+    width: screenWidth - 2 * 20,
+    height: (screenWidth - 2 * 20) / GOLDEN_RATIO,
   },
   errorStyle: {
     margin: 12,

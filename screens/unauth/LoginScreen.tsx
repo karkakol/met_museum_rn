@@ -5,6 +5,7 @@ import {
   Text,
   Image,
   ScrollView,
+  Dimensions,
 } from 'react-native';
 import {useCallback, useState} from 'react';
 import auth from '@react-native-firebase/auth';
@@ -12,6 +13,7 @@ import auth from '@react-native-firebase/auth';
 import {getAppColorStyles} from '../../utils/styles/colors';
 import {FirebaseErrorMap} from '../../utils/firebase/ErrorTranslation';
 import {KeyboardDismissable} from '../../components/KeyboardDismissable';
+import {GOLDEN_RATIO} from '../../utils/constans';
 
 import {AuthTextInput} from './components/AuthTextInput';
 import {AuthButton} from './components/AuthButton';
@@ -42,7 +44,7 @@ export default function LoginScreen() {
         <KeyboardDismissable>
           <View>
             <Image
-              source={require('../../assets/museum_login_image.webp')}
+              source={require('../../assets/login_image.webp')}
               style={styles.image}
             />
             <AuthTextInput
@@ -68,6 +70,8 @@ export default function LoginScreen() {
   );
 }
 
+const screenWidth = Dimensions.get('window').width;
+
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
@@ -78,6 +82,8 @@ const styles = StyleSheet.create({
   image: {
     borderRadius: 20,
     margin: 20,
+    width: screenWidth - 2 * 20,
+    height: (screenWidth - 2 * 20) / GOLDEN_RATIO,
   },
   errorStyle: {
     margin: 12,
