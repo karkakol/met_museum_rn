@@ -32,6 +32,7 @@ export const AuthButton = ({onPress, text}: AuthButtonProps) => {
   const buttonStyle = useAnimatedStyle(() => {
     return {
       position: 'absolute',
+      //when keyboard height is 0 bottom is the height of safeArea.bottom, when height is increasing this expresion is similar to keyboard height
       bottom:
         keyboard.height.value +
         (safeArea.bottom * 28) / (28 + keyboard.height.value),
