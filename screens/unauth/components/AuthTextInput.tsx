@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import {
   View,
-  StyleSheet,
   TextInput,
   TouchableHighlight,
   useColorScheme,
@@ -10,6 +9,8 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import {getAppColors} from '@colors';
 import {Layouts} from '@styles/layouts';
 import {getAppColorStyles} from '@styles/colors';
+
+import {UnAuthStyles} from '../UnAuthStyles';
 
 interface AppTextInputProps {
   text: string;
@@ -36,7 +37,7 @@ export const AuthTextInput = ({
         placeholder={placeholder}
         onChangeText={setText}
         value={text}
-        style={[styles.inputLayout, textStyle]}
+        style={[UnAuthStyles.inputLayout, textStyle]}
         secureTextEntry={obscure && showText}
         autoCapitalize="none"
       />
@@ -44,7 +45,7 @@ export const AuthTextInput = ({
         <TouchableHighlight
           underlayColor={highlightColor}
           hitSlop={{top: 12, bottom: 12, left: 12, right: 12}}
-          style={[styles.iconTouchable]}
+          style={[UnAuthStyles.iconTouchable]}
           onPress={() => setShowText(prevState => !prevState)}>
           <Icon
             name={showText ? 'eye' : 'eye-slash'}
@@ -56,15 +57,3 @@ export const AuthTextInput = ({
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  inputLayout: {
-    flex: 1,
-    fontSize: 24,
-    height: 40,
-  },
-  iconTouchable: {
-    borderRadius: 16,
-    padding: 4,
-  },
-});

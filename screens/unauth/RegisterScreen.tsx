@@ -1,21 +1,13 @@
 import React, {useCallback, useState} from 'react';
-import {
-  View,
-  StyleSheet,
-  useColorScheme,
-  Image,
-  Text,
-  ScrollView,
-  Dimensions,
-} from 'react-native';
+import {View, useColorScheme, Image, Text, ScrollView} from 'react-native';
 import auth from '@react-native-firebase/auth';
 import {getAppColorStyles} from '@styles/colors';
-import {GOLDEN_RATIO} from '@constants';
 
 import {FirebaseErrorMap} from '../../utils/firebase/ErrorTranslation';
 
 import {AuthTextInput} from './components/AuthTextInput';
 import {AuthButton} from './components/AuthButton';
+import {UnAuthStyles} from './UnAuthStyles';
 
 export const RegisterScreen = () => {
   const colorScheme = useColorScheme();
@@ -44,12 +36,12 @@ export const RegisterScreen = () => {
   }, [email, password, repeatedPassword]);
 
   return (
-    <View style={[backgroundStyle, styles.wrapper]}>
+    <View style={[backgroundStyle, UnAuthStyles.wrapper]}>
       <ScrollView keyboardShouldPersistTaps="handled">
         <View>
           <Image
             source={require('../../assets/register_image.jpeg')}
-            style={styles.image}
+            style={UnAuthStyles.image}
             resizeMode="cover"
           />
           <AuthTextInput text={email} setText={setEmail} placeholder="Email" />
@@ -65,35 +57,12 @@ export const RegisterScreen = () => {
             placeholder="Repeated password"
             obscure
           />
-          {errorMessage.length > 0 ? (
-            <Text style={styles.errorStyle}>{errorMessage}</Text>
-          ) : null}
+          {errorMessage.length > 0 && (
+            <Text style={UnAuthStyles.errorStyle}>{errorMessage}</Text>
+          )}
         </View>
       </ScrollView>
       <AuthButton onPress={register} text="Register" />
     </View>
   );
 };
-
-const screenWidth = Dimensions.get('window').width;
-
-const styles = StyleSheet.create({
-  wrapper: {
-    flex: 1,
-    display: 'flex',
-    alignItems: 'stretch',
-    gap: 12,
-  },
-  image: {
-    borderRadius: 20,
-    margin: 20,
-    width: screenWidth - 2 * 20,
-    height: (screenWidth - 2 * 20) / GOLDEN_RATIO,
-  },
-  errorStyle: {
-    margin: 12,
-    fontSize: 14,
-    color: 'red',
-    alignSelf: 'flex-end',
-  },
-});

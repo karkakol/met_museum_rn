@@ -7,10 +7,12 @@ import {getAppColors} from '../utils/colors';
 import LoginScreen from '../screens/unauth/LoginScreen';
 import {RegisterScreen} from '../screens/unauth/RegisterScreen';
 import {getAppColorStyles} from '../utils/styles/colors';
+import ResetPassword from '../screens/unauth/ResetPassword';
 
 export type UnAuthRootStackParamList = {
   Login: undefined;
   Register: undefined;
+  ResetPassword: undefined;
 };
 
 export type UnAuthStackNavigation = NavigationProp<UnAuthRootStackParamList>;
@@ -34,15 +36,15 @@ export default function UnAuthNavigator() {
       initialRouteName="Login"
       screenOptions={() => ({
         tabBarStyle: backgroundStyle,
-        headerStyle: {backgroundColor: backgroundColor},
+        headerStyle: {backgroundColor},
         headerTintColor: headerColor,
         headerBackTitleVisible: false,
-        headerBackVisible: false,
       })}>
       <Stack.Screen
         name="Login"
         component={LoginScreen}
         options={{
+          headerBackVisible: false,
           headerRight: () => (
             <Button
               onPress={navigateToRegister}
@@ -56,6 +58,7 @@ export default function UnAuthNavigator() {
         name="Register"
         component={RegisterScreen}
         options={{
+          headerBackVisible: false,
           headerRight: () => (
             <Button
               onPress={navigateToLogin}
@@ -64,6 +67,11 @@ export default function UnAuthNavigator() {
             />
           ),
         }}
+      />
+      <Stack.Screen
+        name="ResetPassword"
+        component={ResetPassword}
+        options={{headerTitle: 'Reset Password'}}
       />
     </Stack.Navigator>
   );
