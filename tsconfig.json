@@ -5,7 +5,7 @@
     "paths": {
       "@components/*": ["./components/*"],
       "@colors": ["./utils/colors.ts"],
-      "@constans": ["./utils/constans.ts"],
+      "@constants": ["./utils/constants.ts"],
       "@styles/*": ["./utils/styles/*"],
     }
   }

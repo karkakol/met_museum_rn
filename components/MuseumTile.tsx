@@ -12,7 +12,7 @@ import {useNavigation} from '@react-navigation/native';
 import {getAppColorStyles} from '@styles/colors';
 import {getAppColors} from '@colors';
 
-import {MOCK_IMAGE} from '../utils/constans';
+import {MOCK_IMAGE} from '../utils/constants';
 import useGetMuseum from '../api/useGetMuseum';
 import type {AuthStackNavigation} from '../navigators/AuthNavigator';
 

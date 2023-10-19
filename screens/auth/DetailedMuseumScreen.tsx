@@ -13,7 +13,7 @@ import {useState} from 'react';
 import {startCase} from 'lodash';
 import {getAppColorStyles} from '@styles/colors';
 import {getAppColors} from '@colors';
-import {MOCK_IMAGE} from '@constans';
+import {MOCK_IMAGE} from '@constants';
 
 import type {AuthRootStackParamList} from '../../navigators/AuthNavigator';
 
