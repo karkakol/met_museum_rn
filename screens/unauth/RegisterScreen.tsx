@@ -57,9 +57,9 @@ export const RegisterScreen = () => {
             placeholder="Repeated password"
             obscure
           />
-          {errorMessage.length > 0 ? (
+          {errorMessage.length > 0 && (
             <Text style={UnAuthStyles.errorStyle}>{errorMessage}</Text>
-          ) : null}
+          )}
         </View>
       </ScrollView>
       <AuthButton onPress={register} text="Register" />
