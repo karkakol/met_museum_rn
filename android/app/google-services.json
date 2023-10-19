@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1091871250916",
+    "project_id": "metmuseum-d6bf9",
+    "storage_bucket": "metmuseum-d6bf9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1091871250916:android:5f0ebabea56b4a951ccff1",
+        "android_client_info": {
+          "package_name": "com.met_museum_rn"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDL4JC3vPlELaxVr8oo1DJawbuE8NmScLA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

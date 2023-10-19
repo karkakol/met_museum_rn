@@ -1,42 +1,34 @@
+import React, {useCallback} from 'react';
 import {
-  Appearance,
-  StyleSheet,
-  Text,
-  TouchableHighlight,
-  useColorScheme,
   View,
+  StyleSheet,
+  useColorScheme,
+  TouchableHighlight,
+  Text,
 } from 'react-native';
-import {useCallback} from 'react';
+import auth from '@react-native-firebase/auth';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import {getAppColors} from '@colors';
+import {getAppColorStyles} from '@styles/colors';
 
-import {getAppColors} from '../../../utils/colors';
-import {getAppStyles} from '../../../utils/styles';
+export const LogoutTile = () => {
+  const logout = useCallback(() => {
+    auth().signOut().catch(console.log);
+  }, []);
 
-import setColorScheme = Appearance.setColorScheme;
-
-export function ToggleThemeTile() {
   const colorScheme = useColorScheme();
-
-  const toggleColorScheme = useCallback(() => {
-    if (colorScheme === 'light') setColorScheme('dark');
-    else setColorScheme('light');
-  }, [colorScheme]);
-
-  const {surfaceStyle, textStyle} = getAppStyles(colorScheme);
+  const {surfaceStyle, textStyle} = getAppColorStyles(colorScheme);
   const {textColor, highlightColor} = getAppColors(colorScheme);
-
-  const label =
-    colorScheme === 'light' ? 'Enable dark mode' : 'Enable light mode';
 
   return (
     <TouchableHighlight
-      onPress={toggleColorScheme}
+      onPress={logout}
       underlayColor={highlightColor}
       style={styles.touchable}>
       <View style={[styles.containerLayout, surfaceStyle]}>
-        <Text style={[styles.labelLayout, textStyle]}>{label}</Text>
+        <Text style={[styles.labelLayout, textStyle]}>Logout</Text>
         <Icon
-          name="lightbulb-o"
+          name="share-square-o"
           size={32}
           color={textColor}
           style={styles.icon}
@@ -44,7 +36,7 @@ export function ToggleThemeTile() {
       </View>
     </TouchableHighlight>
   );
-}
+};
 
 const styles = StyleSheet.create({
   touchable: {

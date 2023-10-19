@@ -6,11 +6,11 @@ import {
   View,
 } from 'react-native';
 import {useContext} from 'react';
+import {getAppColorStyles} from '@styles/colors';
 
 import {useDebounce} from '../hooks/useDebounce';
 import useAllIds from '../api/useAllIds';
 import {FavouritesContext} from '../providers/FavouritesProvider';
-import {getAppStyles} from '../utils/styles';
 
 import MuseumTile from './MuseumTile';
 
@@ -35,7 +35,7 @@ export default function MuseumList(props: MuseumListProps) {
     );
   };
 
-  const {backgroundStyle} = getAppStyles(colorScheme);
+  const {backgroundStyle} = getAppColorStyles(colorScheme);
 
   return (
     <View style={[styles.containerLayout, backgroundStyle]}>

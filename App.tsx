@@ -1,59 +1,46 @@
-import {
-  NavigationContainer,
-  type NavigationProp,
-} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {useColorScheme} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {View, Text} from 'react-native';
+import auth, {type FirebaseAuthTypes} from '@react-native-firebase/auth';
+import {NavigationContainer} from '@react-navigation/native';
 
-import {FavouritesProvider} from './providers/FavouritesProvider';
-import HomeScreen from './screens/HomeScreen';
-import DetailedMuseumScreen from './screens/DetailedMuseumScreen';
-import type Museum from './model/Museum';
-import {getAppColors} from './utils/colors';
-import {getAppStyles} from './utils/styles';
+import UnAuthNavigator from './navigators/UnAuthNavigator';
+import AuthNavigator from './navigators/AuthNavigator';
+import {AuthProviders} from './providers/AuthProviders';
 
-export type MainRootStackParamList = {
-  Home: undefined;
-  DetailedMuseum: {museum: Museum};
-};
-
-export type MainStackNavigation = NavigationProp<MainRootStackParamList>;
-
-const Stack = createNativeStackNavigator<MainRootStackParamList>();
+type NullableUser = FirebaseAuthTypes.User | null;
 
 export default function App() {
-  return (
-    <FavouritesProvider>
-      <MainNavigator />
-    </FavouritesProvider>
-  );
-}
+  // Set an initializing state whilst Firebase connects
+  const [initializing, setInitializing] = useState(true);
+  const [user, setUser] = useState<NullableUser>();
 
-function MainNavigator() {
-  const colorScheme = useColorScheme();
-  const {backgroundStyle} = getAppStyles(colorScheme);
-  const {backgroundColor, headerColor} = getAppColors(colorScheme);
+  // Handle user state changes
+  function onAuthStateChanged(user: NullableUser) {
+    setUser(user);
+    if (initializing) setInitializing(false);
+  }
+
+  useEffect(() => {
+    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+    return subscriber; // unsubscribe on unmount
+  }, []);
+
+  if (initializing)
+    return (
+      <View>
+        <Text>Loading ...</Text>
+      </View>
+    );
 
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={() => ({
-          tabBarStyle: backgroundStyle,
-          headerStyle: {backgroundColor: backgroundColor},
-          headerTintColor: headerColor,
-          headerBackTitleVisible: false,
-        })}>
-        <Stack.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="DetailedMuseum"
-          component={DetailedMuseumScreen}
-          options={({route}) => ({title: route.params.museum.title})}
-        />
-      </Stack.Navigator>
+      {!user ? (
+        <UnAuthNavigator />
+      ) : (
+        <AuthProviders>
+          <AuthNavigator />
+        </AuthProviders>
+      )}
     </NavigationContainer>
   );
 }

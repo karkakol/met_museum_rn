@@ -1,11 +1,6 @@
-import React, {
-  createContext,
-  type ReactNode,
-  useEffect,
-  useState,
-} from "react";
+import React, {createContext, type ReactNode, useEffect, useState} from 'react';
 
-import { getFavourites, toggleFavourite } from "../async_storage/LocalStorage";
+import {getFavourites, toggleFavourite} from '../async_storage/LocalStorage';
 
 interface FavouriteContextModel {
   loading: boolean;
@@ -53,8 +48,7 @@ export const FavouritesProvider = (props: FavouritesProps) => {
         loading: loading,
         toggle: toggle,
         selected: selected,
-      }}
-    >
+      }}>
       {props.children}
     </FavouritesContext.Provider>
   );

@@ -11,11 +11,11 @@ import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {Chip} from '@rneui/themed';
 import {useState} from 'react';
 import {startCase} from 'lodash';
+import {getAppColorStyles} from '@styles/colors';
+import {getAppColors} from '@colors';
+import {MOCK_IMAGE} from '@constants';
 
-import {MOCK_IMAGE} from '../utils/constans';
-import type {MainRootStackParamList} from '../App';
-import {getAppStyles} from '../utils/styles';
-import {getAppColors} from '../utils/colors';
+import type {AuthRootStackParamList} from '../../navigators/AuthNavigator';
 
 import ScrollView = Animated.ScrollView;
 
@@ -40,7 +40,7 @@ const fieldsToDisplay: DisplayField[] = [
   'repository',
 ];
 
-type Props = NativeStackScreenProps<MainRootStackParamList, 'DetailedMuseum'>;
+type Props = NativeStackScreenProps<AuthRootStackParamList, 'DetailedMuseum'>;
 
 export default function DetailedMuseumScreen({route}: Props) {
   const colorScheme = useColorScheme();
@@ -54,12 +54,13 @@ export default function DetailedMuseumScreen({route}: Props) {
       ? MOCK_IMAGE
       : museum.primaryImageSmall;
 
-  const {backgroundStyle, textStyle} = getAppStyles(colorScheme);
+  const {backgroundStyle, textStyle} = getAppColorStyles(colorScheme);
   const {textColor, textInverseColor} = getAppColors(colorScheme);
 
   const renderChip = (item: DisplayField) => {
     return (
       <Chip
+        key={item}
         title={startCase(item)}
         type={selectedField === item ? 'solid' : 'outline'}
         onPress={() => setSelectedField(item)}

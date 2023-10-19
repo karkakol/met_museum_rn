@@ -6,9 +6,9 @@ import {
   StyleSheet,
 } from 'react-native';
 import React, {useContext} from 'react';
+import {getAppColorStyles} from '@styles/colors';
 
 import {FavouritesContext} from '../providers/FavouritesProvider';
-import {getAppStyles} from '../utils/styles';
 
 import MuseumTile from './MuseumTile';
 
@@ -28,7 +28,7 @@ export default function FavouriteList() {
     );
   };
 
-  const {backgroundStyle} = getAppStyles(colorScheme);
+  const {backgroundStyle} = getAppColorStyles(colorScheme);
 
   return (
     <View style={[styles.containerLayout, backgroundStyle]}>
