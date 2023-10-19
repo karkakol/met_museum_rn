@@ -1,5 +1,12 @@
-import React, {useCallback, useState} from 'react';
-import {View, useColorScheme, Image, Text, ScrollView} from 'react-native';
+import {
+  View,
+  useColorScheme,
+  Text,
+  Image,
+  ScrollView,
+  Alert,
+} from 'react-native';
+import {useCallback, useState} from 'react';
 import auth from '@react-native-firebase/auth';
 import {getAppColorStyles} from '@styles/colors';
 
@@ -8,24 +15,18 @@ import {FirebaseErrorMap} from '../../utils/firebase/ErrorTranslation';
 import {AuthTextInput} from './components/AuthTextInput';
 import {AuthButton} from './components/AuthButton';
 import {UnAuthStyles} from './UnAuthStyles';
-
-export const RegisterScreen = () => {
+export default function ResetPassword() {
   const colorScheme = useColorScheme();
   const {backgroundStyle} = getAppColorStyles(colorScheme);
 
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [repeatedPassword, setRepeatedPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState<string>('');
 
-  const register = useCallback(async () => {
+  const signIn = useCallback(async () => {
     setErrorMessage('');
-    if (repeatedPassword !== password) {
-      setErrorMessage('Passwords must be identical');
-      return;
-    }
     try {
-      await auth().createUserWithEmailAndPassword(email, password);
+      await auth().sendPasswordResetEmail(email);
+      Alert.alert('Check your email to reset password.');
     } catch (e) {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
@@ -33,36 +34,24 @@ export const RegisterScreen = () => {
 
       setErrorMessage(FirebaseErrorMap[code] ?? 'Unknown error');
     }
-  }, [email, password, repeatedPassword]);
+  }, [email]);
 
   return (
     <View style={[backgroundStyle, UnAuthStyles.wrapper]}>
       <ScrollView keyboardShouldPersistTaps="handled">
         <View>
           <Image
-            source={require('../../assets/register_image.jpeg')}
+            source={require('../../assets/reset_password.jpeg')}
             style={UnAuthStyles.image}
-            resizeMode="cover"
           />
           <AuthTextInput text={email} setText={setEmail} placeholder="Email" />
-          <AuthTextInput
-            text={password}
-            setText={setPassword}
-            placeholder="Password"
-            obscure
-          />
-          <AuthTextInput
-            text={repeatedPassword}
-            setText={setRepeatedPassword}
-            placeholder="Repeated password"
-            obscure
-          />
           {errorMessage.length > 0 ? (
             <Text style={UnAuthStyles.errorStyle}>{errorMessage}</Text>
           ) : null}
         </View>
       </ScrollView>
-      <AuthButton onPress={register} text="Register" />
+
+      <AuthButton onPress={signIn} text="Reset password" />
     </View>
   );
-};
+}

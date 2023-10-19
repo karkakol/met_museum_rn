@@ -1,11 +1,10 @@
-import React from 'react';
+import React, {useCallback, useState} from 'react';
 import {
   View,
-  StyleSheet,
   TouchableHighlight,
   Text,
   useColorScheme,
-  Dimensions,
+  ActivityIndicator,
 } from 'react-native';
 import Animated, {
   useAnimatedKeyboard,
@@ -15,9 +14,11 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {getAppColors} from '@colors';
 import {getAppColorStyles} from '@styles/colors';
 
+import {UnAuthStyles} from '../UnAuthStyles';
+
 interface AuthButtonProps {
   text: string;
-  onPress: () => void;
+  onPress: () => void | Promise<void>;
 }
 
 export const AuthButton = ({onPress, text}: AuthButtonProps) => {
@@ -26,6 +27,7 @@ export const AuthButton = ({onPress, text}: AuthButtonProps) => {
     getAppColorStyles(colorScheme);
   const {textColor} = getAppColors(colorScheme);
   const safeArea = useSafeAreaInsets();
+  const [inProgress, setInProgress] = useState(false);
 
   const keyboard = useAnimatedKeyboard();
   const buttonStyle = useAnimatedStyle(() => {
@@ -38,29 +40,33 @@ export const AuthButton = ({onPress, text}: AuthButtonProps) => {
     };
   });
 
+  const onTap = useCallback(async () => {
+    if (inProgress) return;
+    try {
+      setInProgress(true);
+      await onPress();
+    } finally {
+      setInProgress(false);
+    }
+  }, [inProgress, setInProgress]);
+
   return (
     <Animated.View style={buttonStyle}>
       <View style={[backgroundStyle]}>
         <TouchableHighlight
           underlayColor={textColor}
           hitSlop={{top: 12, bottom: 12, left: 12, right: 12}}
-          style={[styles.button, backgroundInverseStyle]}
-          onPress={onPress}>
-          <Text style={[textInverseStyle, styles.buttonText]}>{text}</Text>
+          style={[UnAuthStyles.button, backgroundInverseStyle]}
+          onPress={onTap}>
+          {inProgress ? (
+            <ActivityIndicator />
+          ) : (
+            <Text style={[textInverseStyle, UnAuthStyles.buttonText]}>
+              {text}
+            </Text>
+          )}
         </TouchableHighlight>
       </View>
     </Animated.View>
   );
 };
-
-const screenWidth = Dimensions.get('window').width;
-
-const styles = StyleSheet.create({
-  buttonText: {fontSize: 20, alignSelf: 'center', fontWeight: 'bold'},
-  button: {
-    borderRadius: 20,
-    margin: 12,
-    padding: 12,
-    width: screenWidth - 2 * 12,
-  },
-});
