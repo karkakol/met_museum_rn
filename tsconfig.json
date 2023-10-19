@@ -7,6 +7,7 @@
       "@colors": ["./utils/colors.ts"],
       "@constants": ["./utils/constants.ts"],
       "@styles/*": ["./utils/styles/*"],
+      "@firebaseTranslations":[ "./utils/firebase/ErrorTranslation.ts"],
     }
   }
 }

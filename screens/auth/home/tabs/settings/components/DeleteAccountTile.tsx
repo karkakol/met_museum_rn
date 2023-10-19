@@ -1,12 +1,5 @@
-import React, {useCallback} from 'react';
-import {
-  View,
-  StyleSheet,
-  useColorScheme,
-  TouchableHighlight,
-  Text,
-} from 'react-native';
-import auth from '@react-native-firebase/auth';
+import React from 'react';
+import {View, useColorScheme, TouchableHighlight, Text} from 'react-native';
 import {getAppColorStyles} from '@styles/colors';
 import {getAppColors} from '@colors';
 import Icon from 'react-native-vector-icons/FontAwesome';

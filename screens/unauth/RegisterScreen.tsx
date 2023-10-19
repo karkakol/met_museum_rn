@@ -2,8 +2,8 @@ import React, {useCallback, useState} from 'react';
 import {View, useColorScheme, Image, Text, ScrollView} from 'react-native';
 import auth from '@react-native-firebase/auth';
 import {getAppColorStyles} from '@styles/colors';
-
-import {FirebaseErrorMap} from '../../utils/firebase/ErrorTranslation';
+import {Layouts} from '@styles/layouts';
+import {FirebaseErrorMap} from '@firebaseTranslations';
 
 import {AuthTextInput} from './components/AuthTextInput';
 import {AuthButton} from './components/AuthButton';
@@ -58,7 +58,7 @@ export const RegisterScreen = () => {
             obscure
           />
           {errorMessage.length > 0 && (
-            <Text style={UnAuthStyles.errorStyle}>{errorMessage}</Text>
+            <Text style={Layouts.errorTextStyle}>{errorMessage}</Text>
           )}
         </View>
       </ScrollView>

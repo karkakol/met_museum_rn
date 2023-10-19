@@ -9,8 +9,8 @@ import {
 import {useCallback, useState} from 'react';
 import auth from '@react-native-firebase/auth';
 import {getAppColorStyles} from '@styles/colors';
-
-import {FirebaseErrorMap} from '../../utils/firebase/ErrorTranslation';
+import {Layouts} from '@styles/layouts';
+import {FirebaseErrorMap} from '@firebaseTranslations';
 
 import {AuthTextInput} from './components/AuthTextInput';
 import {AuthButton} from './components/AuthButton';
@@ -46,7 +46,7 @@ export default function ResetPassword() {
           />
           <AuthTextInput text={email} setText={setEmail} placeholder="Email" />
           {errorMessage.length > 0 ? (
-            <Text style={UnAuthStyles.errorStyle}>{errorMessage}</Text>
+            <Text style={Layouts.errorTextStyle}>{errorMessage}</Text>
           ) : null}
         </View>
       </ScrollView>

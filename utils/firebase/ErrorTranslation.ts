@@ -9,4 +9,6 @@ export const FirebaseErrorMap: Record<string, string> = {
   'auth/invalid-email	': 'TEmail address is badly formatted',
   'auth/operation-not-allowed	': 'Operation not allowed',
   'auth/weak-password	': 'Password must have at least 6 characters',
+
+  'auth/too-many-requests': 'Too many requests, try again later',
 };

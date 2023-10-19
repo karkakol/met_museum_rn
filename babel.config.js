@@ -11,6 +11,7 @@ module.exports = {
           '@styles': './utils/styles',
           '@colors': './utils/colors.ts',
           '@constants': './utils/constants.ts',
+          '@firebaseTranslations': './utils/firebase/ErrorTranslation.ts',
         },
       },
     ],

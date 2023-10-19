@@ -16,13 +16,6 @@ export const UnAuthStyles = StyleSheet.create({
     width: screenWidth - 2 * 20,
     height: (screenWidth - 2 * 20) / GOLDEN_RATIO,
   },
-  errorStyle: {
-    margin: 12,
-    fontSize: 14,
-    color: 'red',
-    alignSelf: 'flex-end',
-  },
-
   iconTouchable: {
     borderRadius: 16,
     padding: 4,

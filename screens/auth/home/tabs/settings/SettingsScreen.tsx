@@ -16,19 +16,17 @@ export default function SettingsScreen() {
 
   return (
     <Pressable
-      style={{flex: 1}}
+      style={[{flex: 1}, backgroundStyle, styles.containerLayout]}
       onPress={() => bottomSheetRef.current?.close()}>
-      <GestureHandlerRootView style={[styles.containerLayout, backgroundStyle]}>
-        <ToggleThemeTile />
-        <LogoutTile />
-        <DeleteAccountTile
-          showBottomSheet={() => {
-            bottomSheetRef.current?.expand();
-          }}
-        />
+      <ToggleThemeTile />
+      <LogoutTile />
+      <DeleteAccountTile
+        showBottomSheet={() => {
+          bottomSheetRef.current?.expand();
+        }}
+      />
 
-        <DeleteAccountBottomSheet bottomSheetController={bottomSheetRef} />
-      </GestureHandlerRootView>
+      <DeleteAccountBottomSheet bottomSheetController={bottomSheetRef} />
     </Pressable>
   );
 }

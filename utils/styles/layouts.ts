@@ -26,4 +26,10 @@ export const Layouts = StyleSheet.create({
     width: screenWidth - 2 * 12,
     justifyContent: 'center',
   },
+  errorTextStyle: {
+    margin: 12,
+    fontSize: 14,
+    color: 'red',
+    alignSelf: 'flex-end',
+  },
 });

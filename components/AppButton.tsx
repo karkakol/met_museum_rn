@@ -10,12 +10,12 @@ import {getAppColors} from '@colors';
 import {getAppColorStyles} from '@styles/colors';
 import {Layouts} from '@styles/layouts';
 
-interface AuthButtonProps {
+export interface AppButtonProps {
   text: string;
   onPress: () => void | Promise<void>;
 }
 
-export const DeleteBottomSheetButton = ({onPress, text}: AuthButtonProps) => {
+export const AppButton = ({onPress, text}: AppButtonProps) => {
   const colorScheme = useColorScheme();
   const {textInverseStyle, backgroundInverseStyle} =
     getAppColorStyles(colorScheme);
@@ -33,18 +33,16 @@ export const DeleteBottomSheetButton = ({onPress, text}: AuthButtonProps) => {
   }, [inProgress, setInProgress, onPress]);
 
   return (
-    <View>
-      <TouchableHighlight
-        underlayColor={textColor}
-        hitSlop={{top: 12, bottom: 12, left: 12, right: 12}}
-        style={[Layouts.button, backgroundInverseStyle]}
-        onPress={onTap}>
-        {inProgress ? (
-          <ActivityIndicator />
-        ) : (
-          <Text style={[textInverseStyle, Layouts.buttonText]}>{text}</Text>
-        )}
-      </TouchableHighlight>
-    </View>
+    <TouchableHighlight
+      underlayColor={textColor}
+      hitSlop={{top: 12, bottom: 12, left: 12, right: 12}}
+      style={[Layouts.button, backgroundInverseStyle]}
+      onPress={onTap}>
+      {inProgress ? (
+        <ActivityIndicator />
+      ) : (
+        <Text style={[textInverseStyle, Layouts.buttonText]}>{text}</Text>
+      )}
+    </TouchableHighlight>
   );
 };

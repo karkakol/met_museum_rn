@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {View, Text} from 'react-native';
 import auth, {type FirebaseAuthTypes} from '@react-native-firebase/auth';
 import {NavigationContainer} from '@react-navigation/native';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
 
 import UnAuthNavigator from './navigators/UnAuthNavigator';
 import AuthNavigator from './navigators/AuthNavigator';
@@ -33,14 +34,16 @@ export default function App() {
     );
 
   return (
-    <NavigationContainer>
-      {!user ? (
-        <UnAuthNavigator />
-      ) : (
-        <AuthProviders>
-          <AuthNavigator />
-        </AuthProviders>
-      )}
-    </NavigationContainer>
+    <GestureHandlerRootView style={{flex: 1}}>
+      <NavigationContainer>
+        {!user ? (
+          <UnAuthNavigator />
+        ) : (
+          <AuthProviders>
+            <AuthNavigator />
+          </AuthProviders>
+        )}
+      </NavigationContainer>
+    </GestureHandlerRootView>
   );
 }

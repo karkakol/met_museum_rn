@@ -1,22 +1,14 @@
-import React, {useCallback} from 'react';
-import {
-  View,
-  StyleSheet,
-  useColorScheme,
-  TouchableHighlight,
-  Text,
-} from 'react-native';
-import auth from '@react-native-firebase/auth';
+import React, {useContext} from 'react';
+import {View, useColorScheme, TouchableHighlight, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {getAppColors} from '@colors';
 import {getAppColorStyles} from '@styles/colors';
 
 import {SettingsTilesStyle} from '../styles/SettingsTilesStyle';
+import {UserContext} from '../../../../../../providers/UserProvider';
 
 export const LogoutTile = () => {
-  const logout = useCallback(() => {
-    auth().signOut().catch(console.log);
-  }, []);
+  const {logout} = useContext(UserContext);
 
   const colorScheme = useColorScheme();
   const {surfaceStyle, textStyle} = getAppColorStyles(colorScheme);

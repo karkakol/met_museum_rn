@@ -1,25 +1,16 @@
-import React, {
-  type Ref,
-  useCallback,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react';
+import React, {useCallback, useContext, useState} from 'react';
 import {Text, useColorScheme, View, StyleSheet} from 'react-native';
 import BottomSheetModal, {
   BottomSheetTextInput,
   BottomSheetView,
 } from '@gorhom/bottom-sheet';
 import type {BottomSheetMethods} from '@gorhom/bottom-sheet/lib/typescript/types';
-import auth from '@react-native-firebase/auth';
 import {Layouts} from '@styles/layouts';
 import {getAppColorStyles} from '@styles/colors';
-import {useIsFocused} from '@react-navigation/native';
+import {FirebaseErrorMap} from '@firebaseTranslations';
+import {AppButton} from '@components/AppButton';
 
-import {FirebaseErrorMap} from '../../../../../../utils/firebase/ErrorTranslation';
-import {UnAuthStyles} from '../../../../../unauth/UnAuthStyles';
-
-import {DeleteBottomSheetButton} from './DeleteBottomSheetButton';
+import {UserContext} from '../../../../../../providers/UserProvider';
 
 interface DeleteAccountBottomSheetProps {
   bottomSheetController: React.RefObject<BottomSheetMethods> | undefined;
@@ -27,25 +18,19 @@ interface DeleteAccountBottomSheetProps {
 export const DeleteAccountBottomSheet = ({
   bottomSheetController,
 }: DeleteAccountBottomSheetProps) => {
+  const {deleteAccount} = useContext(UserContext);
+
   const colorScheme = useColorScheme();
   const {surfaceStyle, textStyle, bottomSheetBackgroundStyle} =
     getAppColorStyles(colorScheme);
 
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const user = useMemo(() => {
-    return auth().currentUser;
-  }, []);
 
-  useEffect(() => {
-    setErrorMessage('');
-  }, []);
-
-  const deleteAccount = useCallback(async () => {
+  const onDeletePressed = useCallback(async () => {
     setErrorMessage('');
     try {
-      await auth().signInWithEmailAndPassword(user?.email ?? '', password);
-      await auth().currentUser?.delete();
+      await deleteAccount(password);
     } catch (e) {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
@@ -54,13 +39,14 @@ export const DeleteAccountBottomSheet = ({
       setErrorMessage(FirebaseErrorMap[code] ?? 'Unknown error');
     }
   }, [password, setPassword]);
+
   return (
     <BottomSheetModal
       ref={bottomSheetController}
-      snapPoints={[0.1, 250]}
-      animateOnMount={false}
-      enablePanDownToClose
-      backgroundStyle={bottomSheetBackgroundStyle}>
+      snapPoints={[250]}
+      backgroundStyle={bottomSheetBackgroundStyle}
+      onClose={() => setErrorMessage('')}
+      enablePanDownToClose>
       <BottomSheetView style={styles.bottomSheet}>
         <View>
           <Text style={[textStyle, styles.title]}>
@@ -74,10 +60,10 @@ export const DeleteAccountBottomSheet = ({
             />
           </View>
           {errorMessage.length > 0 && (
-            <Text style={UnAuthStyles.errorStyle}>{errorMessage}</Text>
+            <Text style={Layouts.errorTextStyle}>{errorMessage}</Text>
           )}
         </View>
-        <DeleteBottomSheetButton text="Delete Acount" onPress={deleteAccount} />
+        <AppButton text="Delete Acount" onPress={onDeletePressed} />
       </BottomSheetView>
     </BottomSheetModal>
   );

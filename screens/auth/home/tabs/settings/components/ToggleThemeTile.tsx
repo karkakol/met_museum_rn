@@ -1,6 +1,5 @@
 import {
   Appearance,
-  StyleSheet,
   Text,
   TouchableHighlight,
   useColorScheme,
@@ -11,9 +10,9 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import {getAppColors} from '@colors';
 import {getAppColorStyles} from '@styles/colors';
 
-import setColorScheme = Appearance.setColorScheme;
-
 import {SettingsTilesStyle} from '../styles/SettingsTilesStyle';
+
+import setColorScheme = Appearance.setColorScheme;
 
 export function ToggleThemeTile() {
   const colorScheme = useColorScheme();
