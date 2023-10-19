@@ -22,22 +22,9 @@ export const UnAuthStyles = StyleSheet.create({
     color: 'red',
     alignSelf: 'flex-end',
   },
-  inputLayout: {
-    flex: 1,
-    fontSize: 24,
-    height: 40,
-  },
+
   iconTouchable: {
     borderRadius: 16,
     padding: 4,
-  },
-  buttonText: {fontSize: 20, alignSelf: 'center', fontWeight: 'bold'},
-  button: {
-    height: 50,
-    borderRadius: 20,
-    margin: 12,
-    padding: 12,
-    width: screenWidth - 2 * 12,
-    justifyContent: 'center',
   },
 });

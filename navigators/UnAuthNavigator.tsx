@@ -8,11 +8,13 @@ import LoginScreen from '../screens/unauth/LoginScreen';
 import {RegisterScreen} from '../screens/unauth/RegisterScreen';
 import {getAppColorStyles} from '../utils/styles/colors';
 import ResetPassword from '../screens/unauth/ResetPassword';
+import TestScreen from '../screens/unauth/TestScreen';
 
 export type UnAuthRootStackParamList = {
   Login: undefined;
   Register: undefined;
   ResetPassword: undefined;
+  Test: undefined;
 };
 
 export type UnAuthStackNavigation = NavigationProp<UnAuthRootStackParamList>;
@@ -70,6 +72,11 @@ export default function UnAuthNavigator() {
       <Stack.Screen
         name="ResetPassword"
         component={ResetPassword}
+        options={{headerTitle: 'Reset Password'}}
+      />
+      <Stack.Screen
+        name="Test"
+        component={TestScreen}
         options={{headerTitle: 'Reset Password'}}
       />
     </Stack.Navigator>

@@ -6,11 +6,13 @@ export const Colors = {
   lightHighlight: '#BBBBBB',
   lightText: '#222222',
   lightHeader: '#000000',
+  lightBottomSheetBackground: '#f8f8f8',
   darkBackground: 'black',
   darkSurface: '#222222',
   darkHighlight: '#DDDDDDBB',
   darkText: '#DDDDDD',
   darkHeader: '#FFFFFF',
+  darkBottomSheetBackground: '#111111',
 };
 
 interface AppColors {
@@ -20,6 +22,7 @@ interface AppColors {
   textColor: string;
   textInverseColor: string;
   headerColor: string;
+  bottomSheetBackgroundColor: string;
 }
 
 export function getAppColors(colorScheme: ColorSchemeName) {
@@ -34,6 +37,7 @@ const LightColors: AppColors = {
   textColor: Colors.lightText,
   textInverseColor: Colors.darkText,
   headerColor: Colors.lightHeader,
+  bottomSheetBackgroundColor: Colors.lightBottomSheetBackground,
 };
 
 const DarkColors: AppColors = {
@@ -43,4 +47,5 @@ const DarkColors: AppColors = {
   textColor: Colors.darkText,
   textInverseColor: Colors.lightText,
   headerColor: Colors.darkHeader,
+  bottomSheetBackgroundColor: Colors.darkBottomSheetBackground,
 };

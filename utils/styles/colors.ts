@@ -13,6 +13,7 @@ export function getAppColorStyles(schemeName: ColorSchemeName): ColorMode {
 import {Colors} from '../colors';
 interface ColorMode {
   backgroundStyle: ViewStyle | TextStyle | ImageStyle;
+  bottomSheetBackgroundStyle: ViewStyle | TextStyle | ImageStyle;
   backgroundInverseStyle: ViewStyle | TextStyle | ImageStyle;
   surfaceStyle: ViewStyle | TextStyle | ImageStyle;
   textHeaderStyle: ViewStyle | TextStyle | ImageStyle;
@@ -39,6 +40,9 @@ const LightMode = StyleSheet.create<ColorMode>({
   textInverseStyle: {
     color: Colors.darkText,
   },
+  bottomSheetBackgroundStyle: {
+    backgroundColor: Colors.lightBottomSheetBackground,
+  },
 });
 
 const DarkMode = StyleSheet.create<ColorMode>({
@@ -59,5 +63,8 @@ const DarkMode = StyleSheet.create<ColorMode>({
   },
   textInverseStyle: {
     color: Colors.lightText,
+  },
+  bottomSheetBackgroundStyle: {
+    backgroundColor: Colors.darkBottomSheetBackground,
   },
 });

@@ -11,6 +11,8 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import {getAppColors} from '@colors';
 import {getAppColorStyles} from '@styles/colors';
 
+import {SettingsTilesStyle} from '../styles/SettingsTilesStyle';
+
 export const LogoutTile = () => {
   const logout = useCallback(() => {
     auth().signOut().catch(console.log);
@@ -24,36 +26,16 @@ export const LogoutTile = () => {
     <TouchableHighlight
       onPress={logout}
       underlayColor={highlightColor}
-      style={styles.touchable}>
-      <View style={[styles.containerLayout, surfaceStyle]}>
-        <Text style={[styles.labelLayout, textStyle]}>Logout</Text>
+      style={SettingsTilesStyle.touchable}>
+      <View style={[SettingsTilesStyle.containerLayout, surfaceStyle]}>
+        <Text style={[SettingsTilesStyle.labelLayout, textStyle]}>Logout</Text>
         <Icon
           name="share-square-o"
           size={32}
           color={textColor}
-          style={styles.icon}
+          style={SettingsTilesStyle.icon}
         />
       </View>
     </TouchableHighlight>
   );
 };
-
-const styles = StyleSheet.create({
-  touchable: {
-    borderRadius: 12,
-  },
-  containerLayout: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    borderRadius: 12,
-    padding: 8,
-  },
-  labelLayout: {
-    fontSize: 20,
-  },
-  icon: {
-    paddingRight: 8,
-  },
-});

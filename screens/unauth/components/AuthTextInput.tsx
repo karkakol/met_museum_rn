@@ -37,7 +37,7 @@ export const AuthTextInput = ({
         placeholder={placeholder}
         onChangeText={setText}
         value={text}
-        style={[UnAuthStyles.inputLayout, textStyle]}
+        style={[Layouts.textInput, textStyle]}
         secureTextEntry={obscure && showText}
         autoCapitalize="none"
       />

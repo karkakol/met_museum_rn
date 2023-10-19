@@ -13,8 +13,7 @@ import Animated, {
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {getAppColors} from '@colors';
 import {getAppColorStyles} from '@styles/colors';
-
-import {UnAuthStyles} from '../UnAuthStyles';
+import {Layouts} from '@styles/layouts';
 
 interface AuthButtonProps {
   text: string;
@@ -48,7 +47,7 @@ export const AuthButton = ({onPress, text}: AuthButtonProps) => {
     } finally {
       setInProgress(false);
     }
-  }, [inProgress, setInProgress]);
+  }, [inProgress, setInProgress, onPress]);
 
   return (
     <Animated.View style={buttonStyle}>
@@ -56,14 +55,12 @@ export const AuthButton = ({onPress, text}: AuthButtonProps) => {
         <TouchableHighlight
           underlayColor={textColor}
           hitSlop={{top: 12, bottom: 12, left: 12, right: 12}}
-          style={[UnAuthStyles.button, backgroundInverseStyle]}
+          style={[Layouts.button, backgroundInverseStyle]}
           onPress={onTap}>
           {inProgress ? (
             <ActivityIndicator />
           ) : (
-            <Text style={[textInverseStyle, UnAuthStyles.buttonText]}>
-              {text}
-            </Text>
+            <Text style={[textInverseStyle, Layouts.buttonText]}>{text}</Text>
           )}
         </TouchableHighlight>
       </View>

@@ -13,6 +13,8 @@ import {getAppColorStyles} from '@styles/colors';
 
 import setColorScheme = Appearance.setColorScheme;
 
+import {SettingsTilesStyle} from '../styles/SettingsTilesStyle';
+
 export function ToggleThemeTile() {
   const colorScheme = useColorScheme();
 
@@ -31,36 +33,16 @@ export function ToggleThemeTile() {
     <TouchableHighlight
       onPress={toggleColorScheme}
       underlayColor={highlightColor}
-      style={styles.touchable}>
-      <View style={[styles.containerLayout, surfaceStyle]}>
-        <Text style={[styles.labelLayout, textStyle]}>{label}</Text>
+      style={SettingsTilesStyle.touchable}>
+      <View style={[SettingsTilesStyle.containerLayout, surfaceStyle]}>
+        <Text style={[SettingsTilesStyle.labelLayout, textStyle]}>{label}</Text>
         <Icon
           name="lightbulb-o"
           size={32}
           color={textColor}
-          style={styles.icon}
+          style={SettingsTilesStyle.icon}
         />
       </View>
     </TouchableHighlight>
   );
 }
-
-const styles = StyleSheet.create({
-  touchable: {
-    borderRadius: 12,
-  },
-  containerLayout: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    borderRadius: 12,
-    padding: 8,
-  },
-  labelLayout: {
-    fontSize: 20,
-  },
-  icon: {
-    paddingRight: 8,
-  },
-});
