@@ -36,17 +36,17 @@ export default function UnAuthNavigator() {
   return (
     <Stack.Navigator
       initialRouteName="Login"
-      screenOptions={({route}) => ({
+      screenOptions={() => ({
         tabBarStyle: backgroundStyle,
         headerStyle: {backgroundColor},
         headerTintColor: headerColor,
         headerBackTitleVisible: false,
-        headerBackVisible: route.name === 'ResetPassword',
       })}>
       <Stack.Screen
         name="Login"
         component={LoginScreen}
         options={{
+          headerBackVisible: false,
           headerRight: () => (
             <Button
               onPress={navigateToRegister}
@@ -60,6 +60,7 @@ export default function UnAuthNavigator() {
         name="Register"
         component={RegisterScreen}
         options={{
+          headerBackVisible: false,
           headerRight: () => (
             <Button
               onPress={navigateToLogin}

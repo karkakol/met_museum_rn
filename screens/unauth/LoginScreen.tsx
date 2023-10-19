@@ -55,9 +55,9 @@ export default function LoginScreen() {
             placeholder="Password"
             obscure
           />
-          {errorMessage.length > 0 ? (
+          {errorMessage.length > 0 && (
             <Text style={UnAuthStyles.errorStyle}>{errorMessage}</Text>
-          ) : null}
+          )}
           <View style={styles.resetButton}>
             <Button
               onPress={() => navigation.navigate('ResetPassword')}
