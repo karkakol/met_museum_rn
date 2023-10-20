@@ -3,6 +3,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
+      "@providers/*": ["./providers/*"],
       "@components/*": ["./components/*"],
       "@colors": ["./utils/colors.ts"],
       "@constants": ["./utils/constants.ts"],

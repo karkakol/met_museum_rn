@@ -7,6 +7,7 @@ module.exports = {
       {
         root: ['.'],
         alias: {
+          '@providers': './providers',
           '@components': './components',
           '@styles': './utils/styles',
           '@colors': './utils/colors.ts',

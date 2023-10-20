@@ -9,8 +9,7 @@ import {Layouts} from '@styles/layouts';
 import {getAppColorStyles} from '@styles/colors';
 import {FirebaseErrorMap} from '@firebaseTranslations';
 import {AppButton} from '@components/AppButton';
-
-import {UserContext} from '../../../../../../providers/UserProvider';
+import {UserContext} from '@providers/UserProvider';
 
 interface DeleteAccountBottomSheetProps {
   bottomSheetController: React.RefObject<BottomSheetMethods> | undefined;

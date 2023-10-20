@@ -3,9 +3,9 @@ import {View, useColorScheme, TouchableHighlight, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {getAppColors} from '@colors';
 import {getAppColorStyles} from '@styles/colors';
+import {UserContext} from '@providers/UserProvider';
 
 import {SettingsTilesStyle} from '../styles/SettingsTilesStyle';
-import {UserContext} from '../../../../../../providers/UserProvider';
 
 export const LogoutTile = () => {
   const {logout} = useContext(UserContext);

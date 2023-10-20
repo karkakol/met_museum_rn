@@ -1,6 +1,5 @@
-import {useColorScheme, View, StyleSheet, Pressable} from 'react-native';
+import {useColorScheme, StyleSheet, Pressable} from 'react-native';
 import {getAppColorStyles} from '@styles/colors';
-import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {useRef} from 'react';
 import type BottomSheet from '@gorhom/bottom-sheet';
 

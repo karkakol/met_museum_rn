@@ -1,13 +1,13 @@
 import {useColorScheme} from 'react-native';
 import type {NavigationProp} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {FavouritesProvider} from '@providers/FavouritesProvider';
+import {getAppColorStyles} from '@styles/colors';
+import {getAppColors} from '@colors';
 
 import HomeScreen from '../screens/auth/home/HomeScreen';
 import DetailedMuseumScreen from '../screens/auth/DetailedMuseumScreen';
 import type Museum from '../model/Museum';
-import {FavouritesProvider} from '../providers/FavouritesProvider';
-import {getAppColorStyles} from '../utils/styles/colors';
-import {getAppColors} from '../utils/colors';
 
 export type AuthRootStackParamList = {
   Home: undefined;
