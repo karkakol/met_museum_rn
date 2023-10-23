@@ -3,7 +3,8 @@ import {View, useColorScheme, Image, Text, ScrollView} from 'react-native';
 import auth from '@react-native-firebase/auth';
 import {getAppColorStyles} from '@styles/colors';
 import {Layouts} from '@styles/layouts';
-import {FirebaseErrorMap} from '@firebaseTranslations';
+import {validateTexts} from '@utils/text-validator';
+import {FirebaseErrorMap} from '@utils/firebase/ErrorTranslation';
 
 import {AuthTextInput} from './components/AuthTextInput';
 import {AuthButton} from './components/AuthButton';
@@ -20,11 +21,23 @@ export const RegisterScreen = () => {
 
   const register = useCallback(async () => {
     setErrorMessage('');
-    if (repeatedPassword !== password) {
-      setErrorMessage('Passwords must be identical');
-      return;
-    }
     try {
+      const notEmptyResult = validateTexts(
+        ['notEmpty'],
+        [email, password, repeatedPassword],
+      );
+      if (!notEmptyResult.valid) {
+        setErrorMessage(notEmptyResult.message);
+        return;
+      }
+      const identicalResult = validateTexts(
+        ['identical'],
+        [password, repeatedPassword],
+      );
+      if (!identicalResult.valid) {
+        setErrorMessage(identicalResult.message);
+        return;
+      }
       await auth().createUserWithEmailAndPassword(email, password);
     } catch (e) {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment

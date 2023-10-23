@@ -10,7 +10,9 @@ import {useCallback, useState} from 'react';
 import auth from '@react-native-firebase/auth';
 import {getAppColorStyles} from '@styles/colors';
 import {Layouts} from '@styles/layouts';
-import {FirebaseErrorMap} from '@firebaseTranslations';
+import {FirebaseErrorMap} from '@utils/firebase/ErrorTranslation';
+
+import {validateTexts} from '../../utils/text-validator';
 
 import {AuthTextInput} from './components/AuthTextInput';
 import {AuthButton} from './components/AuthButton';
@@ -25,6 +27,11 @@ export default function ResetPassword() {
   const signIn = useCallback(async () => {
     setErrorMessage('');
     try {
+      const notEmptyResult = validateTexts(['notEmpty'], [email]);
+      if (!notEmptyResult.valid) {
+        setErrorMessage(notEmptyResult.message);
+        return;
+      }
       await auth().sendPasswordResetEmail(email);
       Alert.alert('Check your email to reset password.');
     } catch (e) {

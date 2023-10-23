@@ -7,9 +7,10 @@ import BottomSheetModal, {
 import type {BottomSheetMethods} from '@gorhom/bottom-sheet/lib/typescript/types';
 import {Layouts} from '@styles/layouts';
 import {getAppColorStyles} from '@styles/colors';
-import {FirebaseErrorMap} from '@firebaseTranslations';
 import {AppButton} from '@components/AppButton';
 import {UserContext} from '@providers/UserProvider';
+import {validateTexts} from '@utils/text-validator';
+import {FirebaseErrorMap} from '@utils/firebase/ErrorTranslation';
 
 interface DeleteAccountBottomSheetProps {
   bottomSheetController: React.RefObject<BottomSheetMethods> | undefined;
@@ -29,6 +30,11 @@ export const DeleteAccountBottomSheet = ({
   const onDeletePressed = useCallback(async () => {
     setErrorMessage('');
     try {
+      const notEmptyResult = validateTexts(['notEmpty'], [password]);
+      if (!notEmptyResult.valid) {
+        setErrorMessage(notEmptyResult.message);
+        return;
+      }
       await deleteAccount(password);
     } catch (e) {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment

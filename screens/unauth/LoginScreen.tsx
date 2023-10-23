@@ -12,7 +12,8 @@ import auth from '@react-native-firebase/auth';
 import {getAppColorStyles} from '@styles/colors';
 import {useNavigation} from '@react-navigation/native';
 import {Layouts} from '@styles/layouts';
-import {FirebaseErrorMap} from '@firebaseTranslations';
+import {validateTexts} from '@utils/text-validator';
+import {FirebaseErrorMap} from '@utils/firebase/ErrorTranslation';
 
 import type {UnAuthStackNavigation} from '../../navigators/UnAuthNavigator';
 
@@ -31,6 +32,11 @@ export default function LoginScreen() {
   const signIn = useCallback(async () => {
     setErrorMessage('');
     try {
+      const validationResult = validateTexts(['notEmpty'], [email, password]);
+      if (!validationResult.valid) {
+        setErrorMessage(validationResult.message);
+        return;
+      }
       await auth().signInWithEmailAndPassword(email, password);
     } catch (e) {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment

@@ -1,5 +1,5 @@
 import {Dimensions, StyleSheet} from 'react-native';
-import {GOLDEN_RATIO} from '@constants';
+import {GOLDEN_RATIO} from '@utils/constants';
 
 const screenWidth = Dimensions.get('window').width;
 

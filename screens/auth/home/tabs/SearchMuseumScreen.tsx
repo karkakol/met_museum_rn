@@ -1,10 +1,4 @@
-import {
-  TextInput,
-  View,
-  StyleSheet,
-  useColorScheme,
-  Platform,
-} from 'react-native';
+import {TextInput, View, StyleSheet, useColorScheme} from 'react-native';
 import {useState} from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import MuseumList from '@components/MuseumList';
