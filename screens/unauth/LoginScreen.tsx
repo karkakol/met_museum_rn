@@ -11,8 +11,9 @@ import {useCallback, useState} from 'react';
 import auth from '@react-native-firebase/auth';
 import {getAppColorStyles} from '@styles/colors';
 import {useNavigation} from '@react-navigation/native';
+import {Layouts} from '@styles/layouts';
+import {FirebaseErrorMap} from '@firebaseTranslations';
 
-import {FirebaseErrorMap} from '../../utils/firebase/ErrorTranslation';
 import type {UnAuthStackNavigation} from '../../navigators/UnAuthNavigator';
 
 import {AuthTextInput} from './components/AuthTextInput';
@@ -36,7 +37,7 @@ export default function LoginScreen() {
       // @ts-ignore
       const code = e['code'];
 
-      setErrorMessage(FirebaseErrorMap[code] ?? 'Unknown error');
+      setErrorMessage(FirebaseErrorMap[code] ?? e?.toString());
     }
   }, [email, password]);
 
@@ -56,7 +57,7 @@ export default function LoginScreen() {
             obscure
           />
           {errorMessage.length > 0 && (
-            <Text style={UnAuthStyles.errorStyle}>{errorMessage}</Text>
+            <Text style={Layouts.errorTextStyle}>{errorMessage}</Text>
           )}
           <View style={styles.resetButton}>
             <Button

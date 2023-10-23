@@ -1,33 +1,17 @@
-import React, {useCallback, useState} from 'react';
-import {
-  View,
-  TouchableHighlight,
-  Text,
-  useColorScheme,
-  ActivityIndicator,
-} from 'react-native';
+import React from 'react';
 import Animated, {
   useAnimatedKeyboard,
   useAnimatedStyle,
 } from 'react-native-reanimated';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {getAppColors} from '@colors';
+import {AppButton, type AppButtonProps} from '@components/AppButton';
+import {useColorScheme, View} from 'react-native';
 import {getAppColorStyles} from '@styles/colors';
 
-import {UnAuthStyles} from '../UnAuthStyles';
-
-interface AuthButtonProps {
-  text: string;
-  onPress: () => void | Promise<void>;
-}
-
-export const AuthButton = ({onPress, text}: AuthButtonProps) => {
+export const AuthButton = ({onPress, text}: AppButtonProps) => {
   const colorScheme = useColorScheme();
-  const {textInverseStyle, backgroundInverseStyle, backgroundStyle} =
-    getAppColorStyles(colorScheme);
-  const {textColor} = getAppColors(colorScheme);
+  const {backgroundStyle} = getAppColorStyles(colorScheme);
   const safeArea = useSafeAreaInsets();
-  const [inProgress, setInProgress] = useState(false);
 
   const keyboard = useAnimatedKeyboard();
   const buttonStyle = useAnimatedStyle(() => {
@@ -40,33 +24,11 @@ export const AuthButton = ({onPress, text}: AuthButtonProps) => {
     };
   });
 
-  const onTap = useCallback(async () => {
-    if (inProgress) return;
-    try {
-      setInProgress(true);
-      await onPress();
-    } finally {
-      setInProgress(false);
-    }
-  }, [inProgress, setInProgress]);
-
   return (
-    <Animated.View style={buttonStyle}>
-      <View style={[backgroundStyle]}>
-        <TouchableHighlight
-          underlayColor={textColor}
-          hitSlop={{top: 12, bottom: 12, left: 12, right: 12}}
-          style={[UnAuthStyles.button, backgroundInverseStyle]}
-          onPress={onTap}>
-          {inProgress ? (
-            <ActivityIndicator />
-          ) : (
-            <Text style={[textInverseStyle, UnAuthStyles.buttonText]}>
-              {text}
-            </Text>
-          )}
-        </TouchableHighlight>
-      </View>
-    </Animated.View>
+    <View style={backgroundStyle}>
+      <Animated.View style={buttonStyle}>
+        <AppButton text={text} onPress={onPress} />
+      </Animated.View>
+    </View>
   );
 };

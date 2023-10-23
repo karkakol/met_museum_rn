@@ -1,18 +1,35 @@
-import {useColorScheme, View, StyleSheet} from 'react-native';
+import {useColorScheme, StyleSheet, Pressable, Keyboard} from 'react-native';
 import {getAppColorStyles} from '@styles/colors';
+import {useRef} from 'react';
+import type BottomSheet from '@gorhom/bottom-sheet';
 
 import {ToggleThemeTile} from './components/ToggleThemeTile';
 import {LogoutTile} from './components/LogoutTile';
+import {DeleteAccountTile} from './components/DeleteAccountTile';
+import {DeleteAccountBottomSheet} from './components/DeleteAccountBottomSheet';
 
 export default function SettingsScreen() {
   const colorScheme = useColorScheme();
   const {backgroundStyle} = getAppColorStyles(colorScheme);
+  const bottomSheetRef = useRef<BottomSheet>(null);
 
   return (
-    <View style={[styles.containerLayout, backgroundStyle]}>
+    <Pressable
+      style={[{flex: 1}, backgroundStyle, styles.containerLayout]}
+      onPress={() => {
+        bottomSheetRef.current?.close();
+        Keyboard.dismiss();
+      }}>
       <ToggleThemeTile />
       <LogoutTile />
-    </View>
+      <DeleteAccountTile
+        showBottomSheet={() => {
+          bottomSheetRef.current?.expand();
+        }}
+      />
+
+      <DeleteAccountBottomSheet bottomSheetController={bottomSheetRef} />
+    </Pressable>
   );
 }
 

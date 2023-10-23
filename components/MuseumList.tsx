@@ -7,10 +7,10 @@ import {
 } from 'react-native';
 import {useContext} from 'react';
 import {getAppColorStyles} from '@styles/colors';
+import {FavouritesContext} from '@providers/FavouritesProvider';
 
 import {useDebounce} from '../hooks/useDebounce';
 import useAllIds from '../api/useAllIds';
-import {FavouritesContext} from '../providers/FavouritesProvider';
 
 import MuseumTile from './MuseumTile';
 

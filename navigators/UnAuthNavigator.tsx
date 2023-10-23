@@ -2,17 +2,19 @@ import {Button, useColorScheme} from 'react-native';
 import {type NavigationProp, useNavigation} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {useCallback} from 'react';
+import {getAppColors} from '@colors';
+import {getAppColorStyles} from '@styles/colors';
 
-import {getAppColors} from '../utils/colors';
 import LoginScreen from '../screens/unauth/LoginScreen';
 import {RegisterScreen} from '../screens/unauth/RegisterScreen';
-import {getAppColorStyles} from '../utils/styles/colors';
 import ResetPassword from '../screens/unauth/ResetPassword';
+import TestScreen from '../screens/unauth/TestScreen';
 
 export type UnAuthRootStackParamList = {
   Login: undefined;
   Register: undefined;
   ResetPassword: undefined;
+  Test: undefined;
 };
 
 export type UnAuthStackNavigation = NavigationProp<UnAuthRootStackParamList>;
@@ -71,6 +73,11 @@ export default function UnAuthNavigator() {
       <Stack.Screen
         name="ResetPassword"
         component={ResetPassword}
+        options={{headerTitle: 'Reset Password'}}
+      />
+      <Stack.Screen
+        name="Test"
+        component={TestScreen}
         options={{headerTitle: 'Reset Password'}}
       />
     </Stack.Navigator>

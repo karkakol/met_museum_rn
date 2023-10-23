@@ -1,11 +1,12 @@
-import type {ReactNode} from 'react';
+import type {ProviderProps} from '../types/ProviderProps';
 
 import {FavouritesProvider} from './FavouritesProvider';
+import {UserProvider} from './UserProvider';
 
-interface AuthProvidersProps {
-  children: ReactNode;
-}
-
-export const AuthProviders: React.FC<AuthProvidersProps> = ({children}) => {
-  return <FavouritesProvider>{children}</FavouritesProvider>;
+export const AuthProviders: React.FC<ProviderProps> = ({children}) => {
+  return (
+    <UserProvider>
+      <FavouritesProvider>{children}</FavouritesProvider>
+    </UserProvider>
+  );
 };

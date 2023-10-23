@@ -7,8 +7,7 @@ import {
 } from 'react-native';
 import React, {useContext} from 'react';
 import {getAppColorStyles} from '@styles/colors';
-
-import {FavouritesContext} from '../providers/FavouritesProvider';
+import {FavouritesContext} from '@providers/FavouritesProvider';
 
 import MuseumTile from './MuseumTile';
 
