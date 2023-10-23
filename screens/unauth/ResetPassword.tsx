@@ -32,7 +32,7 @@ export default function ResetPassword() {
       // @ts-ignore
       const code = e['code'];
 
-      setErrorMessage(FirebaseErrorMap[code] ?? 'Unknown error');
+      setErrorMessage(FirebaseErrorMap[code] ?? e?.toString());
     }
   }, [email]);
 

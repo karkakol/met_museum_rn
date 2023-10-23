@@ -31,7 +31,7 @@ export const RegisterScreen = () => {
       // @ts-ignore
       const code = e['code'];
 
-      setErrorMessage(FirebaseErrorMap[code] ?? 'Unknown error');
+      setErrorMessage(FirebaseErrorMap[code] ?? e?.toString());
     }
   }, [email, password, repeatedPassword]);
 

@@ -1,4 +1,4 @@
-import {useColorScheme, StyleSheet, Pressable} from 'react-native';
+import {useColorScheme, StyleSheet, Pressable, Keyboard} from 'react-native';
 import {getAppColorStyles} from '@styles/colors';
 import {useRef} from 'react';
 import type BottomSheet from '@gorhom/bottom-sheet';
@@ -16,7 +16,10 @@ export default function SettingsScreen() {
   return (
     <Pressable
       style={[{flex: 1}, backgroundStyle, styles.containerLayout]}
-      onPress={() => bottomSheetRef.current?.close()}>
+      onPress={() => {
+        bottomSheetRef.current?.close();
+        Keyboard.dismiss();
+      }}>
       <ToggleThemeTile />
       <LogoutTile />
       <DeleteAccountTile

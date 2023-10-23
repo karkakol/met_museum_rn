@@ -1,5 +1,5 @@
 import React, {useCallback, useContext, useState} from 'react';
-import {Text, useColorScheme, View, StyleSheet} from 'react-native';
+import {Text, useColorScheme, View, StyleSheet, Pressable} from 'react-native';
 import BottomSheetModal, {
   BottomSheetTextInput,
   BottomSheetView,
@@ -34,36 +34,38 @@ export const DeleteAccountBottomSheet = ({
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       const code = e['code'];
-      console.log(e);
-      setErrorMessage(FirebaseErrorMap[code] ?? 'Unknown error');
+      setErrorMessage(FirebaseErrorMap[code] ?? e?.toString());
     }
   }, [password, setPassword]);
 
   return (
     <BottomSheetModal
+      index={-1}
       ref={bottomSheetController}
       snapPoints={[250]}
       backgroundStyle={bottomSheetBackgroundStyle}
       onClose={() => setErrorMessage('')}
       enablePanDownToClose>
-      <BottomSheetView style={styles.bottomSheet}>
-        <View>
-          <Text style={[textStyle, styles.title]}>
-            Type password to delete account
-          </Text>
-          <View style={[Layouts.textInputWrapper, surfaceStyle]}>
-            <BottomSheetTextInput
-              onChangeText={setPassword}
-              style={Layouts.textInput}
-              autoCapitalize="none"
-            />
+      <Pressable style={{flex: 1}} onPress={() => {}}>
+        <BottomSheetView style={styles.bottomSheet}>
+          <View>
+            <Text style={[textStyle, styles.title]}>
+              Type password to delete account
+            </Text>
+            <View style={[Layouts.textInputWrapper, surfaceStyle]}>
+              <BottomSheetTextInput
+                onChangeText={setPassword}
+                style={Layouts.textInput}
+                autoCapitalize="none"
+              />
+            </View>
+            {errorMessage.length > 0 && (
+              <Text style={Layouts.errorTextStyle}>{errorMessage}</Text>
+            )}
           </View>
-          {errorMessage.length > 0 && (
-            <Text style={Layouts.errorTextStyle}>{errorMessage}</Text>
-          )}
-        </View>
-        <AppButton text="Delete Acount" onPress={onDeletePressed} />
-      </BottomSheetView>
+          <AppButton text="Delete Acount" onPress={onDeletePressed} />
+        </BottomSheetView>
+      </Pressable>
     </BottomSheetModal>
   );
 };

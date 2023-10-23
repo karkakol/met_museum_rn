@@ -19,18 +19,13 @@ export default function SearchMuseumScreen() {
 
   return (
     <View style={[styles.containerLayout, backgroundStyle]}>
-      <View
-        style={[Layouts.textInputWrapper, surfaceStyle, styles.inputWrapper]}>
+      <View style={[Layouts.textInputWrapper, surfaceStyle]}>
         <TextInput
           onChangeText={setSearch}
           value={search}
-          style={[styles.inputLayout, textStyle]}
+          style={[Layouts.textInput, textStyle]}
         />
-        <Icon
-          name="search"
-          size={Platform.OS === 'ios' ? 24 : 32}
-          style={textStyle}
-        />
+        <Icon name="search" size={24} style={textStyle} />
       </View>
 
       <MuseumList search={search} />
@@ -41,12 +36,5 @@ export default function SearchMuseumScreen() {
 const styles = StyleSheet.create({
   containerLayout: {
     paddingVertical: 4,
-  },
-  inputLayout: {
-    flex: 1,
-    fontSize: 24,
-  },
-  inputWrapper: {
-    paddingVertical: 8,
   },
 });

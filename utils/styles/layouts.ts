@@ -15,6 +15,7 @@ export const Layouts = StyleSheet.create({
   textInput: {
     flex: 1,
     fontSize: 24,
+    padding: 0,
     height: 40,
   },
   buttonText: {fontSize: 20, alignSelf: 'center', fontWeight: 'bold'},

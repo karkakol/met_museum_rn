@@ -11,4 +11,5 @@ export const FirebaseErrorMap: Record<string, string> = {
   'auth/weak-password	': 'Password must have at least 6 characters',
 
   'auth/too-many-requests': 'Too many requests, try again later',
+  'auth/invalid-login': 'Wrong password',
 };
